@@ -1841,5 +1841,45 @@ les points forts de Nel sont la diversité, la beauté , le design et la clarté
             background: var(--hover-color);
         }
     </style>
+
+    <script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const response = await fetch('https://formspree.io/f/xnnbkbkl', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+        showSuccessModal();
+        form.reset();
+    } else {
+        alert("Erreur lors de l'envoi. Merci de réessayer.");
+    }
+});
+function showSuccessModal() {
+    let modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = 0;
+    modal.style.left = 0;
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.background = 'rgba(0,0,0,0.85)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = 3000;
+    modal.innerHTML = `
+        <div style="background: #111; color: #fff; padding: 40px 30px; border-radius: 15px; text-align: center; max-width: 90vw;">
+            <h2 style="color: var(--primary-color); margin-bottom: 20px;">Merci !</h2>
+            <p>Votre message a bien été envoyé.<br>Je vous répondrai rapidement.</p>
+            <button style="margin-top: 25px; padding: 12px 30px; border-radius: 25px; background: var(--primary-color); color: #fff; border: none; font-weight: 600; cursor: pointer;" onclick="this.closest('div[style]').remove()">Fermer</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+</script>
 </body>
 </html>
