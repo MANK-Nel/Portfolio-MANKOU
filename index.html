@@ -1,1051 +1,1845 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="fr" class="no-js">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MANKOU MADOUMA Nel Brunel - Web Designer | UI-UX Designer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Nel Brunel MANKOU - Web Designer, UI-UX Designer et Entrepreneur passionné basé au Gabon. Création de sites web modernes et expériences utilisateur exceptionnelles.">
+    <meta name="keywords" content="web designer, ui ux designer, entrepreneur, gabon, libreville, portfolio">
+    <meta name="author" content="MANKOU MADOUMA Nel Brunel">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MANKOU MADOUMA Nel Brunel - Web Designer">
+    <meta property="og:description" content="Portfolio professionnel de Nel Brunel MANKOU - Web Designer & UI-UX Designer">
+    <meta property="og:url" content="https://mankou-nel.fr">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="mankou-nel.fr">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MANKOU MADOUMA Nel Brunel - Web Designer">
+    <meta name="twitter:description" content="Portfolio professionnel de Nel Brunel MANKOU">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #ff8a00;
+            --bg-dark: #090909;
+            --bg-darker: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #1a1a1a;
+            --card-bg: #111111;
+            --hover-color: #ff9f33;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 320px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .profile-section {
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .profile-title {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: var(--text-primary);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu {
+            padding: 0;
+        }
+        
+        .nav-menu ul {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 20px 30px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+            background: rgba(255, 138, 0, 0.1);
+        }
+        
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--primary-color);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-menu a:hover::before,
+        .nav-menu a.active::before {
+            transform: scaleY(1);
+        }
+        
+        .nav-menu i {
+            width: 20px;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+        
+        .download-cv {
+            margin: 30px;
+            text-align: center;
+        }
+        
+        .btn-cv {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cv:hover {
+            background: var(--hover-color);
+            transform: translateY(-2px);
+        }
+        
+        .contact-btn {
+            margin: 20px 30px;
+        }
+        
+        .btn-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-contact:hover {
+            background: var(--primary-color);
+            color: var(--text-primary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 320px;
+            min-height: 100vh;
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        #Apropos {
+            background: var(--bg-dark);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .about-text h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .about-text .highlight {
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .fun-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .fact-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .fact-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .fact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+        
+        .fact-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .fact-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .testimonials {
+            margin-top: 60px;
+        }
+        
+        .testimonial-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .testimonial-rating {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Resume Section */
+        #resume {
+            background: var(--bg-darker);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .section-title .highlight {
+            color: var(--primary-color);
+        }
+        
+        .resume-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        
+        .resume-column h3 {
+            font-size: 24px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .resume-column h3 i {
+            color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+            border-left: 2px solid var(--border-color);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            font-size: 12px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-company {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Portfolio Section */
+        #portfolio {
+            background: var(--bg-dark);
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--text-primary);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 138, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay i {
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+        
+        .portfolio-info {
+            padding: 30px;
+        }
+        
+        .portfolio-date {
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .portfolio-category {
+            font-size: 12px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .portfolio-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Services Section */
+        #services {
+            background: var(--bg-darker);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-item {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 32px;
+        }
+        
+        .service-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .service-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: var(--bg-dark);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        
+        .contact-info {
+            padding-right: 40px;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .contact-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .contact-text p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        .contact-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .btn-submit {
+            background: var(--primary-color);
+            color: var(--text-primary);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: var(--hover-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .skill-item {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .skill-icon {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .skill-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .skill-level {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .main-content {
+                margin-left: 280px;
+            }
+            
+            .section {
+                padding: 60px 40px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .about-content,
+            .resume-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .section {
+                padding: 40px 30px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .about-text h1 {
+                font-size: 36px;
+            }
+            
+            .fun-facts {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            #stats .fun-facts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .container {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .about-text h1 {
+                font-size: 28px;
+            }
+            
+            .about-text p {
+                font-size: 16px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+            
+            .fun-facts {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            #stats .fun-facts {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-section {
+                padding: 30px 20px;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-name {
+                font-size: 20px;
+            }
+            
+            .nav-menu a {
+                padding: 15px 20px;
+            }
+            
+            .download-cv,
+            .contact-btn {
+                margin: 20px;
+            }
+            
+            .about-text h1 {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .section {
+                padding: 30px 15px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .portfolio-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Smooth scrolling enhancement */
+        .smoothscroll {
+            transition: all 0.3s ease;
+        }
+        
+        /* Loading animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
 
-   <!-- Google Tag Manager -->
-   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-   })(window,document,'script','dataLayer','GTM-TD5QV9WG');</script>
-   <!-- End Google Tag Manager -->
+            animation: fadeInUp 0.6s ease forwards;
+        }
 
-   <!-- Basic page needs -->
-   <meta charset="utf-8">
-   <title>Nel Brunel Mankou Madouma | Web Designer | UI-UX Designer </title>
-   <meta name="description" content="Découvrez le portfolio de Nel Brunel Mankou Madouma, Web Designer, UI/UX designer. Explorez mes projets créatifs et mes services pour enrichir l'expérience utilisateur et renforcer l'identité visuelle de votre marque.">
-   <meta name="keywords" content="Web Designer, UI-UX Designer, Portfolio">
-   <meta name="author" content="Nel Brunel Mankou Madouma">
+        /* Hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease;
+        }
 
-   <!-- Open Graph / Facebook -->
-   <meta property="og:type" content="website" />
-   <meta property="og:url" content="https://mankou-nel.fr/" />
-   <meta property="og:title" content="Nel Brunel Mankou Madouma | Web Designer, UI-UX Designer" />
-   <meta property="og:description" content="Découvrez le portfolio de Nel Brunel Mankou Madouma, Web Designer, UI-UX designer. Explorez mes projets créatifs et mes services pour enrichir l'expérience utilisateur et renforcer l'identité visuelle de votre marque." />
-   <meta property="og:image" content="https://mankou-nel.fr/images/ton-image.png" />
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
 
-   <!-- Twitter -->
-   <meta property="twitter:card" content="summary_large_image" />
-   <meta property="twitter:url" content="https://mankou-nel.fr/" />
-   <meta property="twitter:title" content="Nel Brunel Mankou Madouma | Web Designer, UI-UX designer" />
-   <meta property="twitter:description" content="Découvrez le portfolio de Nel Brunel Mankou Madouma, Web Designer, UI-UX designer. Explorez mes projets créatifs et mes services pour enrichir l'expérience utilisateur et renforcer l'identité visuelle de votre marque." />
-   <meta property="twitter:image" content="https://mankou-nel.fr/images/ton-image.png" />
+        /* Carousel clients minimal, non-intrusif */
+        .clients-carousel { 
+            overflow: hidden; 
+            width: 100%; 
+            margin: 30px 0; 
+            background: transparent; 
+        }
 
-   <!-- Mobile specific metas -->
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        .clients-track { 
+            display: flex; 
+            align-items: center; 
+            gap: 60px; 
+            animation: scrollClients 18s linear infinite; 
+            width: max-content; 
+        }
 
-   <!-- CSS -->
-   <link rel="stylesheet" href="css/base.css">  
-   <link rel="stylesheet" href="css/main.css">
-   <link rel="stylesheet" href="css/vendor.css">     
+        .clients-track img { 
+            height: 48px; 
+            width: auto; 
+            opacity: 1; 
+            filter: invert(1) brightness(0.8); 
+            transition: opacity 0.3s, filter 0.3s; 
+            background: transparent; 
+        }
 
-   <!-- Scripts -->
-   <script src="js/modernizr.js"></script>
-   <script src="js/pace.min.js"></script>
+        .clients-track img:hover { 
+            opacity: 1; 
+            filter: invert(1) brightness(1); 
+        }
 
-   <!-- Favicons -->
-   <link rel="icon" type="image/png" href="favicon.png">
+        @keyframes scrollClients { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(-50%); } 
+        }
 
+        @media (max-width: 900px) { 
+            .clients-track { gap: 30px; } 
+            .clients-track img { height: 36px; } 
+        }
+
+        @media (max-width: 600px) {
+            .clients-track {
+                gap: 20px;
+                animation: scrollClients 15s linear infinite;
+            }
+            .clients-track img { height: 28px; }
+        }
+
+        @media (max-width: 992px) {
+            /* ... vos styles existants ... */
+            #Apropos {
+                padding-top: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* ... vos styles existants ... */
+            #Apropos {
+                padding-top: 100px;
+            }
+        }
+    </style>
 </head>
-
-<body id="top">
-
-   <!-- Google Tag Manager (noscript) -->
-   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD5QV9WG"
-   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-   <!-- End Google Tag Manager (noscript) -->
-
-   <!-- Header -->
-   <!-- Your header content goes here -->
-
-</body>
-</html>
-
-   <header>   	
-   	<div class="row">
-
-   		<div class="top-bar">
-   			<a class="menu-toggle" href="#"><span>Menu</span></a>
-
-	   			      
-
-		   	<nav id="main-nav-wrap">
-					<ul class="main-navigation">
-						<li class="current"><a class="smoothscroll"  href="#intro" title="">Accueil</a></li>
-						<li><a class="smoothscroll"  href="#Apropos" title="">A propos</a></li>
-						<li><a class="smoothscroll"  href="#portfolio" title="">Portfolio</a></li>
-						<li><a class="smoothscroll"  href="#services" title="">Services</a></li>					
-						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>				
-					</ul>
-				</nav>    		
-   		</div> <!-- /top-bar --> 
-   		
-   	</div> <!-- /row --> 		
-   </header> <!-- /header -->
-
-	<!-- intro section
-   ================================================== -->
-   <section id="intro">   
-
-   	<div class="intro-overlay"></div>	
-
-   	<div class="intro-content">
-   		<div class="row">
-
-   			<div class="col-twelve">
-
-
-	   			<p class="intro-position">
-	   				<span>Web Designer</span>
-	   				<span>UI-UX Designer</span> 
-					<span>Entrepreneur</span> 
-	   			</p>
-
-	   			<a class="button stroke smoothscroll" href="#about" title=""> A propos de moi</a>
-
-	   		</div>  
-   			
-   		</div>   		 		
-   	</div> <!-- /intro-content --> 
-
-   	<ul class="intro-social">        
-         <li><a href="https://www.facebook.com/profile.php?id=61560121535714"><i class="fa fa-facebook"></i></a></li>
-         <li><a href="https://www.linkedin.com/in/nel-brunel-mankou-madouma/"><i class="fa fa-linkedin"></i></a></li>
-      </ul> <!-- /intro-social -->      	
-
-   </section> <!-- /intro -->
-
-
-   <!-- about section
-   ================================================== -->
-   <section id="about">  
-
-   	<div class="row section-intro">
-   		<div class="col-twelve"id=Apropos>
-
-   			<h5>A propos de moi</h5>
-   			<h1>Laisse moi me présenter.</h1>
-
-   			<div class="intro-info">
-
-   				<img src="images/profile-pic.jpg" alt="Profile Picture">
-
-   				<p class="lead">Je suis un professionnel passionné par le design, avec une expertise dans le web design, le graphisme et l'entrepreneuriat. Je transforme des idées en expériences visuelles captivantes et des concepts en réalités numériques. Mon objectif est de créer des designs non seulement beaux mais aussi fonctionnels, pour enrichir l'expérience utilisateur et renforcer l'identité visuelle de chaque projet.</p>
-   			</div>   			
-
-   		</div>   		
-   	</div> <!-- /section-intro -->
-
-   	<div class="row about-content">
-
-   		<div class="col-six tab-full">
-
-   			<h3>Profil</h3>
-   			<p>Designer polyvalent et entrepreneur, avec une solide formation en web design et graphisme, je combine créativité et stratégie pour offrir des solutions sur mesure. Toujours en quête de nouveaux défis.</p>
-
-   			<ul class="info-list">
-   				<li>
-   					<strong>Nom et Prénom:</strong>
-   					<span>MANKOU MADOUMA Nel Brunel</span>
-   				</li>
-   				<li>
-   					<strong>Date de naissance:</strong>
-   					<span>30 Juin, 1999</span>
-   				</li>
-   				<li>
-   					<strong>Profession:</strong>
-   					<span> Web Designer | UI-UX Designer | Entrepreneur</span>
-   				</li>
-   				<li>
-   					<strong>LinkedIn:</strong>
-   					<span>https://www.linkedin.com/in/nel-brunel-mankou-madouma/</span>
-   				</li>
-				   <li>
-					<strong>Facebook:</strong>
-					<span>https://www.facebook.com/Mankou.Madouma.Nel</span>
-				</li>
-   				<li>
-   					<strong>Email:</strong>
-   					<span>mankou986@gmail.com</span>
-   				</li>
-
-   			</ul> <!-- /info-list -->
-
-   		</div>
-
-   		<div class="col-six tab-full">
-
-   			<h3>Skills</h3>
-   			<p>Découvrez un éventail de compétences qui fusionnent créativité et expertise technique. Chaque compétence que j'ai développée est le résultat de passion, de rigueur et d'un engagement constant à fournir des solutions de design innovantes et impactantes.</p>
-
-				<ul class="skill-bars">
-				   <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>Web Design</strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>Adobe Photoshop</strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>Canva</strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>Branding</strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>Workspeace</strong>
-				   </li>
-					 <li>
-				   	<div class="progress percent70"><span>70%</span></div>
-				   	<strong>WordPress</strong>
-				   </li>
-				   <li>
-					<div class="progress percent50"><span>50%</span></div>
-					<strong>CAPCUT</strong>
-				</li>
-				<li>
-					<div class="progress percent35"><span>50%</span></div>
-					<strong>Emailing</strong>
-				</li>
-				<li>
-					<div class="progress percent40"><span>40%</span></div>
-					<strong>Dev. Web</strong>
-				</li>
-      
-				</ul> <!-- /skill-bars -->		
-
-   		</div>
-
-   	</div>
-
-   	<div class="row button-section">
-   		<div class="col-twelve">
-   			<a href="#contact" title="Hire Me" class="button stroke smoothscroll">Contact</a>
-   			<a href="Document/CV-Web Designer-M. MANKOU NEL.pdf" title="Télécharger le CV" class="button button-primary">Télécharger le CV</a>
-   		</div>   		
-   	</div>
-
-   </section> <!-- /process-->    
-
-
-   <!-- resume Section
-   ================================================== -->
-	<section id="resume" class="grey-section">
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			
-   		</div>   		
-   	</div> <!-- /section-intro--> 
-
-   	<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>EXPERIENCES</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-
-				<div class="timeline-block">
-
-					<div class="timeline-ico">
-						<i class="fa fa-graduation-cap"></i>
-					</div>
-
-					<div class="timeline-header">
-						<h3>Formateur en Marketing Digital</h3>
-						<p>Février - Juin 2025</p>
-					</div>
-
-					<div class="timeline-content">
-						<h4>Ogoouée Labs</h4>
-						<p>Contrat à durée Determiné (CDD) : 04Mois.</p>
-					</div>
-
-
-				</div> <!-- /timeline-block -->
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Commercial</h3>
-	   					<p>Octobre -Novembre 2023</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Tonerdesk Gabon</h4>
-	   					<p>Contrat à durée Determiné (CDD) : 02Mois.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Agent Administratif</h3>
-	   					<p>Juillet - Août 2023</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>SOCOBA-EDTPL</h4>
-	   					<p> Contrat à durée Determiné (CDD) : 02Mois.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Agent Administratif</h3>
-	   					<p>Juillet - Août 2023</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>SOCOBA-EDTPL</h4>
-	   					<p>Contrat à durée Determiné (CDD) : 02Mois.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-   	
-   	<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>FORMATIONS</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Web Designer</h3>
-	   					<p>Avril - Décembre 2024</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Ecole 241</h4>
-	   					<p>Formations aux métiers du numériques.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>DENC</h3>
-	   					<p>Juin 2021</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Ecole Nationale de Commerce</h4>
-	   					<p> Filière : Action Communication et Administratives.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Baccalauréat Technologique</h3>
-	   					<p>Août 2020</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Ecole Nationale de Commerce</h4>
-	   					<p> Filière : Action Communication et Administratives.</p>
-	   				</div>
-					
-				</div> <!-- /timeline-block -->
-
-				<div class="timeline-block">
-
-					<div class="timeline-ico">
-						<i class="fa fa-briefcase"></i>
-					</div>
-
-					   <div class="timeline-header">
-						<h3>Certificat d'Aptitudes Professionnels</h3>
-						<p>2018</p>
-					</div>
-
-					<div class="timeline-content">
-						<h4>Ecole Nationale de Commerce</h4>
-						<p> Filière : Action Communication et Administratives.</p>
-					</div>
-
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-		
-	</section> <!-- /features -->
-
-
-	<!-- Portfolio Section
-   ================================================== -->
-	<section id="portfolio">
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>Portfolio</h5>
-   			<h1>Découvrez quelques-unes de mes créations.</h1>
-
-   			<p class="lead">Chaque pièce est un reflet de ma passion et de mon engagement pour l'excellence.</p>
-
-   		</div>   		
-   	</div> <!-- /section-intro--> 
-
-   	<div class="row portfolio-content">
-
-   		<div class="col-twelve">
-
-   			<!-- portfolio-wrapper -->
-	         <div id="folio-wrapper" class="block-1-2 block-mob-full stack">
-
-	         	<div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/portfolio/Maquette site E-commerce.png" alt="Plage">
-	                  <a href="#modal-01" class="overlay">	                  	           
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-		     					       <h3 class="folio-title">Ce projet comprend plusieurs pages</h3>	     					    
-		     					    	 <span class="folio-types">
-		     					       	  Maquette interactive site E-commerce sur Figma
-		     					       </span>
-		     					   </div>	                      	
-	                     </div>                    
-	                  </a>
-	               </div>	               
-	        		</div> <!-- /folio-item -->
-
-	        		<div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/portfolio/Landing Page Jus d'orange.png" alt="début de semaine">
-	               	<a href="#modal-02" class="overlay">              		                  
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">Landing Page réalisée sur Figma</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Landing Page sur Figma
-		     					      </span>		     		
-		     					   </div> 	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->
-
-	            <div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/portfolio/Capture d’écran 2025-05-05 231717.png"alt="Clouds">
-	                  <a href="#modal-03" class="overlay">             		                  
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">Présentations Produits réalisée sur Figma</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Maquette et Prototypage
-		     					      </span>		     		
-		     					   </div> 	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->
-
-	            <div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/portfolio/3D---Communication---MANKOU--Nel.jpg" alt="Beetle">
-	                  <a href="#modal-04" class="overlay">                  	                 
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">PhotoShop + IA</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Conception Visuelle
-		     					      </span>		     		
-		     					   </div>  	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->     
-
-					<div class="bgrid folio-item">
-						<div class="item-wrap">
-							<img src="images/portfolio/385shots_so.jpeg" alt="Beetle">
-						   <a href="#modal-05" class="overlay">                  	                 
-							  <div class="folio-item-table">
-								  <div class="folio-item-cell">
-									  <h3 class="folio-title">Figma</h3>	     					    
-											  <span class="folio-types">
-												   Figma
-											</span>		     		
-										 </div>  	                      	
-							  </div>                    
-						   </a>
-						</div>
-					</div> <!-- /folio-item -->   
-
-						<div class="bgrid folio-item">
-							<div class="item-wrap">
-								<img src="images/portfolio/Mois-d'avril-Nel--Client.jpg" alt="Beetle">
-							   <a href="#modal-06" class="overlay">                  	                 
-								  <div class="folio-item-table">
-									  <div class="folio-item-cell">
-										  <h3 class="folio-title">PhotoShop</h3>	     					    
-												  <span class="folio-types">
-													   Conception Visuelle
-												</span>		     		
-											 </div>  	                      	
-								  </div>                    
-							   </a>
-							</div>
-						</div> <!-- /folio-item -->   
-
-	            <!-- modal popups - begin
-	            ============================================================= -->
-	            <div id="modal-01" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/portfolio/Maquette site E-commerce.png" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Maquette Interactive site E-commerce</h4>		      
-					      <p>Aperçu de la maquette interactive d'un site E-commerce que j'ai réalisé sur Figma : Organisation du contenu, prototypage avec animations.</p>
-
-					      <div class="categories">Maquette</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://www.figma.com/proto/43GHwp2EzMDHo4QRRzHwEW/TendanceMag-(MANKOU)?node-id=1-2&node-type=canvas&t=zegb6YqdZcagRFlb-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1">Details</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-01 -->
-
-				   <div id="modal-02" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/portfolio/Landing Page Jus d'orange.png" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Landing Page</h4>		      
-					      <p>Landing Page de jus d'orange réalisé sur Figma.</p>
-
-					      <div class="categories">Maquette</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://www.figma.com/proto/yiD3vHCqXvrOO2kwT2iQRQ/Landing-page-Figma--(MANKOU)?node-id=1-2&node-type=canvas&t=lOVm0FbnVCjgbFzg-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1">Details</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-02 -->
-
-				   <div id="modal-03" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/portfolio/Capture d’écran 2025-05-05 231717.png" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Maquette et Prototypage </h4>		      
-					      <p>Réalisé sur figma, mettant en scène trois types d'écouteurs.</p>
-
-					      <div class="categories">Maquette et Prototypage</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href=https://www.figma.com/proto/mF8VU7e6hPg9ILewY3vzqr/Ecouteur-sans-fil?node-id=3-2&starting-point-node-id=3%3A2&t=o58D0CUfVuLmI2Dg-1>Details</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-03 -->
-
-				   <div id="modal-04" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/portfolio/3D---Communication---MANKOU--Nel.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>PhotoShop</h4>		      
-					      <p>Association PhotoShop + ChatGPT</p>
-
-					      <div class="categories">Branding</div>			               
-					   </div>
-
-			         <div class="link-box">
-			           
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-04 -->
-
-				   <div id="modal-05" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/portfolio/385shots_so.jpeg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Figma</h4>		      
-					      <p>Maquette avec animation réalisé sur Figma</p>
-
-					      <div class="categories">Design</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://www.figma.com/proto/b1COoaI3XHrSg6uklQ6asf/Nel-MANKOU---Chausures?node-id=1-3&p=f&t=UeE2UlOCdj7TpaiQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3">Details</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-05 -->
-
-				   <div id="modal-06" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/portfolio/Mois-d'avril-Nel--Client.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>PhotoShop</h4>		      
-					      <p>Conception visuelle.</p>
-
-					      <div class="categories">Branding</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-06 -->
-
-
-				   <!-- modal popups - end
-	            ============================================================= -->
-
-	         </div> <!-- /portfolio-wrapper --> 
-
-   		</div>  <!-- /twelve -->   
-
-   	</div> <!-- /portfolio-content --> 
-		
-	</section> <!-- /portfolio --> 
-
-
-	<!-- CTA Section
-   ================================================== -->
-	<section id="cta" class="grey-section">
-
-   	<div class="row cta-content">
-
-   		<div class="col-twelve section-ads">  
-
-	     		<h2 class="h01"><a href="https://www.facebook.com/Chronos.Services/">Chronos-Services.</a></h2>
-
-		      <p class="lead">
-		      Chronos-Service est la première page Facebook que j'ai crée en Septembre 2021. J'y propose plusieurs services
-				<!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->	
-				</p>
-
-				<div class="action">
-			      <a class="button button-primary large" href="https://www.facebook.com/Chronos.Services/">Visiter</a>
-		      </div>		     	
-
-   		</div>
-
-   	</div> <!-- /cta-content -->
-
-   </section> <!-- /cta --> 
-
-	
-	<!-- services Section
-   ================================================== -->
-	<section id="services">
-
-		<div class="overlay"></div>
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5> Mes Services</h5>
-
-   			<p class="lead">
-				Attirez, engagez et fidélisez vos clients grâce à une présence digitale puissante et captivante.</p>
-
-   		</div>   		
-   	</div> <!-- /section-intro -->
-
-   	<div class="row services-content">
-
-   		<div id="owl-slider" class="owl-carousel services-list">
-
-	      	<div class="service">	
-
-	      		<span class="icon"><i class="icon-earth"></i></span>            
-
-	            <div class="service-content">	
-
-	            	 <h3>Affiche Publicitaire</h3>
-
-		            <p class="desc"> Conception d'affiche sur Adobe Photoshop/Canva .
-	         		</p>
-	         		
-	         	</div> 	         	 
-
-				</div> <!-- /service -->
-
-				<div class="service">	
-
-					<span class="icon"><i class="icon-window"></i></span>                          
-
-	            <div class="service-content">	
-
-	            	<h3>Montage Vidéo</h3>  
-
-		            <p class="desc">Montage de vidéos professionnelles sur CapCut, avec une attention particulière à la qualité et aux détails..
-	         		</p>
-
-	            </div>	                          
-
-			   </div> <!-- /service -->
-
-			   <div class="service">
-
-			   	<span class="icon"><i class="icon-paint-brush"></i></span>		            
-
-	            <div class="service-content">
-
-	            	<h3>Publicité digitale</h3>
-
-		            <p class="desc">Gérez vos réseaux sociaux pour promouvoir votre marque via des publicités sur Google et Facebook.
-	        			</p> 
-
-	            </div> 	            	               
-
-			   </div> <!-- /service -->
-
-				<div class="service">
-
-					<span class="icon"><i class="icon-toggles"></i></span>	              
-
-	            <div class="service-content">
-
-	            	<h3>Branding</h3>
-
-		            <p class="desc">Développement de l'identité visuelle de votre marque, en assurant une cohérence avec vos supports de communication.
-	         		</p> 
-	         		
-	            </div>                
-
-				</div> <!-- /service -->
-
-			   <div class="service">
-
-			   	<span class="icon"><i class="icon-image"></i></span>	            
-
-	            <div class="service-content">
-
-	            	<h3> E-mail Marketing</h3>
-
-		            <p class="desc">Boostez votre engagement client avec des campagnes d'e-mail marketing ciblées et personnalisées.</p> 
-
-	            </div>	               
-
-			   </div> <!-- /service -->
-
-			   <div class="service">
-
-			   	<span class="icon"><i class="icon-chat"></i></span>	   	           
-
-	            <div class="service-content">
-
-	            	 <h3>Marketing digital sur mesure</h3>
-
-		            <p class="desc">Développez une stratégie de marketing digital intégrée visant à optimiser votre visibilité en ligne.
-	        			
-	            </div>	               
-
-			   </div> <!-- /service -->
-
-	      </div> <!-- /services-list -->
-   		
-   	</div> <!-- /services-content -->
-		
-	</section> <!-- /services -->	
-
-
-	<!-- stats Section
-   ================================================== -->
-	<section id="stats" class="count-up">
-
-		<div class="row">
-			<div class="col-twelve">
-
-				<div class="block-1-6 block-s-1-3 block-tab-1-2 block-mob-full stats-list">
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-pencil-ruler"></i>
-						</div>
-
-						<h3 class="stat-count">
-							4
-						</h3>
-
-						<h5 class="stat-title">
-							Projects Complètés
-						</h5>
-
-					</div> <!-- /stat -->					
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-users"></i>
-						</div>
-
-						<h3 class="stat-count">
-							0
-						</h3>
-
-						<h5 class="stat-title">
-							Clients Satisfaits
-						</h5>
-
-					</div> <!-- /stat -->
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-badge"></i>
-						</div>
-
-						<h3 class="stat-count">
-							13
-						</h3>
-
-						<h5 class="stat-title">
-							Certifications
-						</h5>
-
-					</div> <!-- /stat -->									
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-light-bulb"></i>
-						</div>
-
-						<h3 class="stat-count">
-							09
-						</h3>
-
-						<h5 class="stat-title">
-							Créations
-						</h5>
-
-					</div> <!-- /stat -->
-
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-clock"></i>
-						</div>
-
-						<h3 class="stat-count">
-							0
-						</h3>
-
-						<h5 class="stat-title">
-							Heures totales
-						</h5>
-
-					</div> <!-- /stat -->
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-cup"></i>
-						</div>
-
-						<h3 class="stat-count">
-							1
-						</h3>
-
-						<h5 class="stat-title">
-							Thé
-						</h5>
-
-					</div> <!-- /stat -->
-				</div> <!-- /stats-list -->
-
-			</div> <!-- /twelve -->
-		</div> <!-- /row -->
-
-	</section> <!-- /stats -->
-
-	
- <!-- contact
-   ================================================== -->
-<section id="contact">
-
-    <div class="row section-intro">
-        <div class="col-twelve">
-
-            <h5>Contact</h5>
-            <h1>Vous avez besoin de plus d'informations?</h1>
-
-            <p class="lead">Veuillez me contacter en cliquant sur le bouton ci-dessous.</p>
-
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="images/profile-pic.jpg" alt="MANKOU MADOUMA Nel Brunel">
+            </div>
+            <h2 class="profile-name">MANKOU MADOUMA<br>Nel Brunel</h2>
+            <p class="profile-title">Web Designer | UI-UX Designer</p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/nel-brunel-mankou-madouma/" target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61560121535714" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.facebook.com/Chronos.Services/" target="_blank" rel="noopener" title="Chronos Services">
+                    <i class="fas fa-briefcase"></i>
+                </a>
+                <a href="https://www.behance.net/NMMANKOU" target="_blank" rel="noopener">
+                    <i class="fab fa-behance"></i>
+                </a>
+                <a href="https://www.pinterest.com/mankou986/" target="_blank" rel="noopener">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+                <a href="mailto:mankou986@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
         </div>
-    </div> <!-- /section-intro -->
+        
+        <div class="nav-menu">
+            <ul>
+                <li><a href="#Apropos" class="smoothscroll active"><i class="fas fa-user"></i>À Propos</a></li>
+                <li><a href="#resume" class="smoothscroll"><i class="fas fa-file-alt"></i>CV</a></li>
+                <li><a href="#portfolio" class="smoothscroll"><i class="fas fa-briefcase"></i>Projets</a></li>
+                <li><a href="#services" class="smoothscroll"><i class="fas fa-cogs"></i>Services</a></li>
+                <li><a href="#blog" class="smoothscroll"><i class="fas fa-blog"></i>Articles</a></li>
+                <li><a href="#contact" class="smoothscroll"><i class="fas fa-envelope"></i>Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="download-cv">
+            <a href="Document/CV-Web Designer-M. MANKOU NEL.pdf" class="btn-cv" download>
+                <i class="fas fa-download"></i>
+                Télécharger CV
+            </a>
+        </div>
+        
+        <div class="contact-btn">
+            <a href="javascript:void(0)" onclick="sendWhatsAppMessage()" class="btn-contact">
+                <i class="fab fa-whatsapp"></i>
+                Me Contacter
+            </a>
+        </div>
+    </nav>
 
-    <div class="row contact-form">
-    <div class="col-twelve">
-        <button type="button" class="submitform" onclick="sendWhatsAppMessage()">me contacter</button>
-    </div> <!-- /col-twelve -->
-</div> <!-- /contact-form -->
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- About Section -->
+        <section id="Apropos" class="section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text animate-in">
+                        <h1>Hey, je suis <span class="highlight">Nel</span><br>
+                        <span class="highlight">MANKOU</span></h1>
+                        <p>Salut ! Je suis Nel Brunel MANKOU, un Web Designer et UI-UX Designer passionné. Je me spécialise dans la création d'expériences numériques exceptionnelles en utilisant des outils comme Adobe Photoshop, Canva, WordPress et bien d'autres technologies modernes.</p>
+                        <p>Basé au Gabon, j'aide les entreprises à créer leur identité visuelle et à développer des solutions web qui marquent les esprits.</p>
+                    </div>
+                    
+                    <div class="fun-facts animate-in">
+                        <div class="fact-item hover-lift">
+                            <div class="fact-icon">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <div class="fact-number" data-count="4">0</div>
+                            <div class="fact-label">Projets<br>Complétés</div>
+                        </div>
+                        
+                        <div class="fact-item hover-lift">
+                            <div class="fact-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="fact-number" data-count="13">0</div>
+                            <div class="fact-label">Certifications<br>Obtenues</div>
+                        </div>
+                        
+                        <div class="fact-item hover-lift">
+                            <div class="fact-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="fact-number" data-count="9">0</div>
+                            <div class="fact-label">Créations<br>Originales</div>
+                        </div>
+                        
+                        <div class="fact-item hover-lift">
+                            <div class="fact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="fact-number" data-count="0">0</div>
+                            <div class="fact-label">Pays<br>Découverts</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonials">
+                        <div class="testimonial-item">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="testimonial-text">"Joyce Ngoma"  recommande Mankou Madouma Nel.
+les points forts de Nel sont la diversité, la beauté , le design et la clarté des informations transmises 💫</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<script>
-    function sendWhatsAppMessage() {
-        var whatsappURL = "https://wa.me/241077101378";
-        window.open(whatsappURL, "_blank");
-    }
-</script>
+        <!-- Blog Section -->
+        <section id="blog" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title"><span class="highlight">B</span>log</h2>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item hover-lift">
+                        <div class="portfolio-image">
+                            <!-- Vous pourrez ajouter votre image ici -->
+                            <img src="images/portfolio/jury-blog.jpg" alt="Membre du jury AUMT">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">ÉDUCATION</div>
+                            <span class="portfolio-date">23 Juin 2025</span>
+                            <h3 class="portfolio-title">Membre du Jury - AUMT</h3>
+                            <p class="portfolio-desc">Membre du jury lors de la soutenance des apprenants de la licence 1, 2, 3 et master (Marketing digital, Développement web, Développement web mobile).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</section> <!-- /contact -->
-   	<div class="row contact-info">
+        <!-- Resume Section -->
+        <section id="resume" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title"><span class="highlight">C</span>V</h2>
+                </div>
+                
+                <div class="resume-content">
+                    <div class="resume-column">
+                        <h3><i class="fas fa-briefcase"></i>EXPÉRIENCE</h3>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Février - Juin 2025</div>
+                            <h4 class="timeline-title">Formateur en Marketing Digital</h4>
+                            <div class="timeline-company">Ogoouée Labs</div>
+                            <p class="timeline-desc">Dispenser les cours aux apprenants de la licence 3 à African University of Management & Technologies(AUMT).</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Octobre - Novembre 2023</div>
+                            <h4 class="timeline-title">Commercial</h4>
+                            <div class="timeline-company">Tonerdesk Gabon</div>
+                            <p class="timeline-desc">Contrat à durée Déterminée (CDD), 02 Mois.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Juillet - Août 2023</div>
+                            <h4 class="timeline-title">Agent Administratif</h4>
+                            <div class="timeline-company">SOCOBA-EDTPL</div>
+                            <p class="timeline-desc">Contrat à durée Déterminée (CDD), 02 Mois.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resume-column">
+                        <h3><i class="fas fa-graduation-cap"></i>FORMATION</h3>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Avril - Décembre 2024</div>
+                            <h4 class="timeline-title">Web Designer</h4>
+                            <div class="timeline-company">École 241</div>
+                            <p class="timeline-desc">Formations aux métiers du numérique.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Juin 2021</div>
+                            <h4 class="timeline-title">DENC</h4>
+                            <div class="timeline-company">École Nationale de Commerce</div>
+                            <p class="timeline-desc">Filière : Action Commerciale et Administrative.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Août 2020</div>
+                            <h4 class="timeline-title">Baccalauréat Technologique</h4>
+                            <div class="timeline-company">École Nationale de Commerce</div>
+                            <p class="timeline-desc">Filière : Action Commerciale et Administrative.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018</div>
+                            <h4 class="timeline-title">Certificat d'Aptitudes Professionnels</h4>
+                            <div class="timeline-company">École Nationale de Commerce</div>
+                            <p class="timeline-desc">Filière : Action Commerciale et Administrative.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills Section -->
+                <div class="skills-grid">
+                    <div class="skill-item hover-lift">
+                        <div class="skill-icon">
+                            <i class="fab fa-adobe"></i>
+                        </div>
+                        <div class="skill-name">Adobe Photoshop</div>
+                        <div class="skill-level">...</div>
+                    </div>
+                    
+                    <div class="skill-item hover-lift">
+                        <div class="skill-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="skill-name">Canva</div>
+                        <div class="skill-level">...</div>
+                    </div>
+                    
+                    <div class="skill-item hover-lift">
+                        <div class="skill-icon">
+                            <i class="fab fa-wordpress"></i>
+                        </div>
+                        <div class="skill-name">WordPress</div>
+                        <div class="skill-level">...</div>
+                    </div>
+                    
+                    <div class="skill-item hover-lift">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-name">Web Design</div>
+                        <div class="skill-level">...</div>
+                    </div>
+                    
+                    <div class="skill-item hover-lift">
+                        <div class="skill-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="skill-name">CAPCUT</div>
+                        <div class="skill-level">...</div>
+                    </div>
+                    
+                    <div class="skill-item hover-lift">
+                        <div class="skill-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="skill-name">Email Marketing</div>
+                        <div class="skill-level">...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-   		<div class="col-four tab-full">
+                <!-- Clients Section (carousel) -->
+                <section id="clients" class="section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title"><span class="highlight">C</span>lients</h2>
+                        </div>
+                        <div class="clients-carousel">
+                            <div class="clients-track">
+                                <img src="images/clients/Rabanel Auto Ecole.png" alt="Rabanel Auto Ecole" />
+                                <img src="images/clients/Ecole 241.png" alt="Ecole 241" />
+                                <img src="images/clients/Ogouee Labs.png" alt="Ogouee Labs" />
+                                <img src="images/clients/Rabanel Auto Ecole.png" alt="Rabanel Auto Ecole" />
+                                <img src="images/clients/Ecole 241.png" alt="Ecole 241" />
+                                <img src="images/clients/Ogouee Labs.png" alt="Ogouee Labs" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title"><span class="highlight">P</span>rojets</h2>
+                </div>
+                
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">Tout</button>
+                    <button class="filter-btn" data-filter="video">Vidéo</button>
+                    <button class="filter-btn" data-filter="link">Link</button>
+                    <button class="filter-btn" data-filter="image">Image</button>
+                    <button class="filter-btn" data-filter="content">Contenu</button>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-01')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Maquette site E-commerce.png" alt="Maquette E-commerce">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">CONTENT</div>
+                            <h3 class="portfolio-title">TendanceMag E-commerce</h3>
+                            <p class="portfolio-desc">Maquette complète d'un site e-commerce moderne pour TendanceMag avec une interface utilisateur intuitive et design responsive.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item hover-lift" data-category="link" onclick="openModal('modal-02')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Landing Page Jus d'orange.png" alt="Landing Page">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">LINK</div>
+                            <h3 class="portfolio-title">Landing Page Jus d'Orange</h3>
+                            <p class="portfolio-desc">Design de landing page créative pour une marque de jus d'orange avec animations et expérience utilisateur optimisée.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-03')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/385shots_so.jpeg" alt="Design Collection">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-images"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">IMAGE</div>
+                            <h3 class="portfolio-title">Collection Chaussures</h3>
+                            <p class="portfolio-desc">Création graphique et design pour une collection de chaussures avec focus sur l'expérience produit et l'identité visuelle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-04')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/3D---Communication---MANKOU--Nel.jpg" alt="Communication 3D">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">CONTENT</div>
+                            <h3 class="portfolio-title">Communication 3D</h3>
+                            <p class="portfolio-desc">Créations visuelles 3D pour campagnes de communication digitale et supports marketing multimédia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-   			<div class="icon">
-   				<i class="icon-pin"></i>
-   			</div>
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Mes <span class="highlight">Services</span></h2>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-item hover-lift">
+                        <div class="service-icon">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                        <h3 class="service-title">Affiche Publicitaire</h3>
+                        <p class="service-desc">Conception d'affiche sur Adobe Photoshop/Canva pour vos campagnes publicitaires et communications visuelles.</p>
+                    </div>
+                    
+                    <div class="service-item hover-lift">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="service-title">Montage Vidéo</h3>
+                        <p class="service-desc">Montage de vidéos professionnelles sur CapCut, avec une attention particulière à la qualité et aux détails.</p>
+                    </div>
+                    
+                    <div class="service-item hover-lift">
+                        <div class="service-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="service-title">Publicité Digitale</h3>
+                        <p class="service-desc">Gérez vos réseaux sociaux pour promouvoir votre marque via des publicités sur Google et Facebook.</p>
+                    </div>
+                    
+                    <div class="service-item hover-lift">
+                        <div class="service-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="service-title">Branding</h3>
+                        <p class="service-desc">Développement de l'identité visuelle de votre marque, en assurant une cohérence avec vos supports de communication.</p>
+                    </div>
+                    
+                    <div class="service-item hover-lift">
+                        <div class="service-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h3 class="service-title">E-mail Marketing</h3>
+                        <p class="service-desc">Boostez votre engagement client avec des campagnes d'e-mail marketing ciblées et personnalisées.</p>
+                    </div>
+                    
+                    <div class="service-item hover-lift">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="service-title">Marketing Digital sur Mesure</h3>
+                        <p class="service-desc">Développez une stratégie de marketing digital intégrée visant à optimiser votre visibilité en ligne.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-   			<h5>Localisation</h5>
+        <!-- Stats Section -->
+        <section id="stats" class="section" style="background: var(--bg-dark); padding: 60px 60px;">
+            <div class="container">
+                <div class="fun-facts" style="grid-template-columns: repeat(4, 1fr); margin-top: 0;">
+                    <div class="fact-item hover-lift">
+                        <div class="fact-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="fact-number" data-count="4">0</div>
+                        <div class="fact-label">Projets<br>Complétés</div>
+                    </div>
+                    
+                    <div class="fact-item hover-lift">
+                        <div class="fact-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="fact-number" data-count="13">0</div>
+                        <div class="fact-label">Certifications<br>Obtenues</div>
+                    </div>
+                    
+                    <div class="fact-item hover-lift">
+                        <div class="fact-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="fact-number" data-count="9">0</div>
+                        <div class="fact-label">Créations<br>Originales</div>
+                    </div>
+                    
+                    <div class="fact-item hover-lift">
+                        <div class="fact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="fact-number" data-count="0">0</div>
+                        <div class="fact-label">Pays<br>Découverts</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-   			<p>
-            Port-Gentil, Gabon<br>
-            Quartier PG2<br>
-            </p>
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Entrer en <span class="highlight">Contact</span></h2>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Restons en Contact</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Adresse:</h4>
+                                <p>Port-Gentil, Gabon</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email:</h4>
+                                <p>mankou986@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Téléphone:</h4>
+                                <p>(+241) 077.10.13.78</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Freelance:</h4>
+                                <p>Disponible</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contactForm" method="post" action="https://formspree.io/f/xnnbkbkl">
+                            <div class="form-group">
+                                <label for="contactName">Nom *</label>
+                                <input type="text" id="contactName" name="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactEmail">Email *</label>
+                                <input type="email" id="contactEmail" name="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactSubject">Sujet</label>
+                                <input type="text" id="contactSubject" name="subject" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactMessage">Message *</label>
+                                <textarea id="contactMessage" name="message" class="form-control" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                Envoyer le Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-   		</div>
+    <!-- Modals -->
+    <div id="modal-01" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-01')">&times;</span>
+            <h2>TendanceMag E-commerce</h2>
+            <p>Maquette complète d'un site e-commerce moderne pour TendanceMag avec une interface utilisateur intuitive et design responsive.</p>
+            <a href="https://www.figma.com/proto/43GHwp2EzMDHo4QRRzHwEW/TendanceMag--MANKOU-?node-id=1-2&node-type=canvas&t=zegb6YqdZcagRFlb-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" class="btn-modal">Voir le Prototype</a>
+        </div>
+    </div>
 
-   		<div class="col-four tab-full collapse">
+    <div id="modal-02" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-02')">&times;</span>
+            <h2>Landing Page Jus d'Orange</h2>
+            <p>Design de landing page créative pour une marque de jus d'orange avec animations et expérience utilisateur optimisée.</p>
+            <a href="https://www.figma.com/proto/yiD3vHCqXvrOO2kwT2iQRQ/Landing-page-Figma---MANKOU-?node-id=1-2&node-type=canvas&t=lOVm0FbnVCjgbFzg-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" class="btn-modal">Voir le Prototype</a>
+        </div>
+    </div>
 
-   			<div class="icon">
-   				<i class="icon-mail"></i>
-   			</div>
+    <div id="modal-03" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-03')">&times;</span>
+            <h2>Collection Chaussures</h2>
+            <p>Création graphique et design pour une collection de chaussures avec focus sur l'expérience produit et l'identité visuelle.</p>
+            <a href="https://www.figma.com/proto/b1COoaI3XHrSg6uklQ6asf/Nel-MANKOU---Chausures?node-id=1-3&p=f&t=UeE2UlOCdj7TpaiQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3" target="_blank" class="btn-modal">Voir le Prototype</a>
+        </div>
+    </div>
 
-   			<h5>Mes Emails</h5>
+    <div id="modal-04" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-04')">&times;</span>
+            <h2>Communication 3D</h2>
+            <p>Créations visuelles 3D pour campagnes de communication digitale et supports marketing multimédia.</p>
+            <a href="#" target="_blank" class="btn-modal">Voir Plus</a>
+        </div>
+    </div>
 
-   			<p>mankou986@gmail.com<br>
-			   chronosservices241gmail.com<br>
-			   coach.nelmankou@gmail.com<br>		     
-			   </p>
+    <script>
+        // Navigation smooth scroll
+        document.querySelectorAll('.smoothscroll').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-   		</div>
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
 
-   		<div class="col-four tab-full">
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-toggle');
+            
+            if (window.innerWidth <= 992) {
+                if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
 
-   			<div class="icon">
-   				<i class="icon-phone"></i>
-   			</div>
+        // Active menu item
+        function setActiveMenu() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-   			<h5>Mes Contacts</h5>
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
 
-   			<p>Téléphone: (+241) 077.10.13.78<br>
-			   Téléphone: (+241) 065.37.08.82<br>
-			   </p>
+        window.addEventListener('scroll', setActiveMenu);
 
-   		</div>
-   		
-   	</div> <!-- /contact-info -->
-		
-	</section> <!-- /contact -->
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.fact-number[data-count]');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target + (target >= 1000 ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
 
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    if (entry.target.id === 'stats') {
+                        animateCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
 
-   <!-- footer
-   ================================================== -->
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
 
-   <footer>
-     	<div class="row">
+        // Portfolio filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-     		<div class="col-six tab-full pull-right social">
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-     			<ul class="footer-social">        
-			      <li><a href="https://www.facebook.com/profile.php?id=61560121535714"><i class="fa fa-facebook"></i></a></li>
-			      <li><a href="https://www.linkedin.com/in/nel-brunel-mankou-madouma/"><i class="fa fa-linkedin"></i></a></li>
-			   </ul> 
-	      		
-	    
+                const filter = btn.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
 
-	      	<div id="go-top">
-		         <a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
-		      </div>
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
 
-      	</div> <!-- /row -->     	
-   </footer>  
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
 
-   <div id="preloader"> 
-    	<div id="loader"></div>
-   </div> 
+        // WhatsApp function
+        function sendWhatsAppMessage() {
+            const phoneNumber = "241077101378";
+            const message = encodeURIComponent("Bonjour Nel Brunel, je souhaiterais discuter d'un projet avec vous.");
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
 
-   <!-- Java Script
-   ================================================== --> 
-   <script src="js/jquery-2.1.3.min.js"></script>
-   <script src="js/plugins.js"></script>
-   <script src="js/main.js"></script>
+        // Form validation (Formspree handles submission)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (!name || !email || !message) {
+                e.preventDefault();
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return false;
+            }
+            
+            // Let Formspree handle the actual submission
+            return true;
+        });
 
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveMenu();
+            animateCounters();
+        });
+    </script>
+
+    <!-- Modal Styles -->
+    <style>
+        .modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 30px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-modal {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+
+        .btn-modal:hover {
+            background: var(--hover-color);
+        }
+    </style>
 </body>
-
 </html>
