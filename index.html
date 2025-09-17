@@ -1046,6 +1046,76 @@
     </style>
 </head>
 <body>
+    <!-- Loader d'entrée personnalisé -->
+    <div id="site-loader">
+        <div class="loader-content">
+            <div class="loader-logo">N</div>
+            <span class="loader-title">el&nbsp;<span class="loader-highlight">MANKOU</span></span>
+        </div>
+        <div class="loader-bar-bg">
+            <div id="loader-bar"></div>
+        </div>
+        <div id="loader-percent">0%</div>
+    </div>
+    <style>
+    #site-loader {
+        position: fixed; z-index: 5000; top: 0; left: 0; width: 100vw; height: 100vh;
+        background: var(--bg-dark, #090909); display: flex; flex-direction: column;
+        align-items: center; justify-content: center; transition: opacity 0.5s;
+    }
+    .loader-content { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .loader-logo {
+        background: var(--primary-color, #ff8a00); color: #fff; width: 56px; height: 56px;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 2rem; font-weight: 800; box-shadow: 0 2px 12px #0002;
+    }
+    .loader-title {
+        font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: 1px;
+    }
+    .loader-highlight { color: var(--primary-color, #ff8a00); }
+    .loader-bar-bg {
+        width: 220px; height: 8px; background: #fff1; border-radius: 8px; margin-bottom: 12px; overflow: hidden;
+    }
+    #loader-bar {
+        height: 100%; width: 0; background: var(--primary-color, #ff8a00); border-radius: 8px; transition: width 0.2s;
+    }
+    #loader-percent {
+        color: var(--primary-color, #ff8a00); font-size: 1.3rem; font-weight: 600;
+    }
+    @media (max-width: 600px) {
+        .loader-content { gap: 8px; margin-bottom: 24px; }
+        .loader-logo { width: 38px; height: 38px; font-size: 1.2rem; }
+        .loader-title { font-size: 1.1rem; }
+        .loader-bar-bg { width: 120px; height: 6px; }
+        #loader-percent { font-size: 1rem; }
+    }
+    </style>
+    <script>
+    document.body.style.overflow = "hidden";
+    let percent = 0;
+    const loaderBar = document.getElementById('loader-bar');
+    const loaderPercent = document.getElementById('loader-percent');
+    const siteLoader = document.getElementById('site-loader');
+    function animateLoader() {
+        percent += Math.random() * 8 + 2;
+        if (percent > 100) percent = 100;
+        loaderBar.style.width = percent + "%";
+        loaderPercent.textContent = Math.floor(percent) + "%";
+        if (percent < 100) {
+            setTimeout(animateLoader, 40);
+        } else {
+            setTimeout(() => {
+                siteLoader.style.opacity = 0;
+                setTimeout(() => {
+                    siteLoader.style.display = "none";
+                    document.body.style.overflow = "";
+                }, 500);
+            }, 400);
+        }
+    }
+    window.addEventListener('DOMContentLoaded', animateLoader);
+    </script>
+
     <!-- Mobile Menu Toggle -->
     <button class="mobile-toggle" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
