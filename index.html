@@ -490,20 +490,29 @@
         
         .portfolio-image {
             width: 100%;
-            height: 250px;
+            height: 220px; /* taille fixe des vignettes */
             overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            padding: 8px; /* petit espace autour pour voir l'affiche entière */
         }
         
         .portfolio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* affiche l'image entière sans la recadrer */
+            display: block;
+            transition: transform 0.18s ease;
         }
-        
+
+        /* léger zoom au survol sans recadrage */
         .portfolio-item:hover .portfolio-image img {
-            transform: scale(1.1);
+            transform: scale(1.02);
         }
         
         .portfolio-overlay {
@@ -1495,6 +1504,120 @@ les points forts de Nel sont la diversité, la beauté , le design et la clarté
                             <p class="portfolio-desc">Créations visuelles 3D pour campagnes de communication digitale et supports marketing multimédia.</p>
                         </div>
                     </div>
+
+                    <!-- Nouveaux éléments ajoutés depuis le dossier images/portfolio -->
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-05')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Octobre Affiche - Chronos-Services -  copie 4.jpg" alt="Octobre Affiche - Chronos Services">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">AFFICHE</div>
+                            <h3 class="portfolio-title">Affiche Chronos-Services</h3>
+                            <p class="portfolio-desc">Affiche publicitaire réalisée pour Chronos-Services — design et mise en page.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-06')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Miniature Photo-1.jpg" alt="Miniature Photo">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-images"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">IMAGE</div>
+                            <h3 class="portfolio-title">Miniature Photo</h3>
+                            <p class="portfolio-desc">Miniature réalisée pour une campagne vidéo / miniature YouTube.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-07')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/news design 1.jpg" alt="News Design">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">GRAPHISME</div>
+                            <h3 class="portfolio-title">News Design</h3>
+                            <p class="portfolio-desc">Design d'une couverture ou visuel d'actualité pour communication digitale.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-08')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Coach-Jesse.jpg" alt="Coach Jesse">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">VIDEO</div>
+                            <h3 class="portfolio-title">Coach Jesse - Miniature</h3>
+                            <p class="portfolio-desc">Miniature et visuel pour une vidéo promotionnelle du Coach Jesse.</p>
+                        </div>
+                    </div>
+
+                    <!-- Ajout : nouvelles images fournies -->
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-09')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Photo de couverture Facebook.jpg" alt="Photo de couverture Facebook">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">COUVERTURE</div>
+                            <h3 class="portfolio-title">Photo de couverture Facebook</h3>
+                            <p class="portfolio-desc">Photo de couverture réalisée pour la page Facebook — design personnalisé.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-10')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/3D-Templates---MANKOU--Nel-copie.jpg" alt="3D Templates">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">3D</div>
+                            <h3 class="portfolio-title">3D Templates</h3>
+                            <p class="portfolio-desc">Templates 3D et maquettes pour supports de communication.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-11')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Eglise-MANKOU--Nel-copie.jpg" alt="Eglise MANKOU">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-church"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">GRAPHISME</div>
+                            <h3 class="portfolio-title">Eglise - Visuel</h3>
+                            <p class="portfolio-desc">Visuel créé pour une église/manifestation communautaire.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-12')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Style-Africain---MANKOU--Nel-copie.jpg" alt="Style Africain">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">STYLE</div>
+                            <h3 class="portfolio-title">Style Africain</h3>
+                            <p class="portfolio-desc">Visuel au style africain — pattern, typographie et couleur.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1716,6 +1839,78 @@ les points forts de Nel sont la diversité, la beauté , le design et la clarté
             <h2>Communication 3D</h2>
             <p>Créations visuelles 3D pour campagnes de communication digitale et supports marketing multimédia.</p>
             <a href="#" target="_blank" class="btn-modal">Voir Plus</a>
+        </div>
+    </div>
+
+    <div id="modal-05" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-05')">&times;</span>
+            <h2>Affiche Chronos-Services</h2>
+            <p>Affiche publicitaire réalisée pour Chronos-Services — design et mise en page.</p>
+            <img src="images/portfolio/Octobre Affiche - Chronos-Services -  copie 4.jpg" alt="Affiche Chronos-Services" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-06" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-06')">&times;</span>
+            <h2>Miniature Photo</h2>
+            <p>Miniature réalisée pour une campagne vidéo / miniature YouTube.</p>
+            <img src="images/portfolio/Miniature Photo-1.jpg" alt="Miniature Photo" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-07" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-07')">&times;</span>
+            <h2>News Design</h2>
+            <p>Design d'une couverture ou visuel d'actualité pour communication digitale.</p>
+            <img src="images/portfolio/news design 1.jpg" alt="News Design" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-08" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-08')">&times;</span>
+            <h2>Coach Jesse - Miniature</h2>
+            <p>Miniature et visuel pour une vidéo promotionnelle du Coach Jesse.</p>
+            <img src="images/portfolio/Coach-Jesse.jpg" alt="Coach Jesse" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-09" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-09')">&times;</span>
+            <h2>Photo de couverture Facebook</h2>
+            <p>Photo de couverture conçue pour une page Facebook professionnelle.</p>
+            <img src="images/portfolio/Photo de couverture Facebook.jpg" alt="Photo de couverture Facebook" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-10" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-10')">&times;</span>
+            <h2>3D Templates</h2>
+            <p>Templates 3D et maquettes pour supports de communication.</p>
+            <img src="images/portfolio/3D-Templates---MANKOU--Nel-copie.jpg" alt="3D Templates" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-11" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-11')">&times;</span>
+            <h2>Eglise - Visuel</h2>
+            <p>Visuel créé pour une église/manifestation communautaire.</p>
+            <img src="images/portfolio/Eglise-MANKOU--Nel-copie.jpg" alt="Eglise MANKOU" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-12" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-12')">&times;</span>
+            <h2>Style Africain</h2>
+            <p>Visuel au style africain — pattern, typographie et couleur.</p>
+            <img src="images/portfolio/Style-Africain---MANKOU--Nel-copie.jpg" alt="Style Africain" style="max-width:100%; margin-top:16px; border-radius:8px;" />
         </div>
     </div>
 
