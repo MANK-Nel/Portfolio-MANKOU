@@ -473,6 +473,26 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
+
+        /* Client group (réutilisable) */
+        .client-group {
+            margin: 30px 0 18px;
+            padding: 12px;
+            background: transparent;
+            border-radius: 8px;
+        }
+
+        .client-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .client-group-header h4 { color: var(--primary-color); font-size:18px; margin:0; font-weight:700; }
+
+        .client-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px; }
         
         .portfolio-item {
             background: var(--card-bg);
@@ -1269,6 +1289,40 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="testimonial-text">J'aime beaucoup les couleurs, elles mettent vraiment en valeur la beauté de l'affiche. Je suis satisfaite du résultat.</div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc client : NOG Technologie (regroupe les projets du client) -->
+                    <div class="client-group" aria-label="Projets pour NOG Technologie">
+                        <div class="client-group-header">
+                            <h4>NOG Technologie</h4>
+                            <div style="color:var(--text-secondary); font-size:14px;">Projets en cours — espace réutilisable</div>
+                        </div>
+
+                        <div class="client-grid">
+                            <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-38')">
+                                <div class="portfolio-image">
+                                    <img src="images/portfolio/nog-affiche-publicitaire-1.jpg" alt="Affiche Publicitaire Nog">
+                                    <div class="portfolio-overlay"><i class="fas fa-image"></i></div>
+                                </div>
+                                <div class="portfolio-info">
+                                    <div class="portfolio-category">CLIENT</div>
+                                    <h3 class="portfolio-title">Affiche Publicitaire — Nog</h3>
+                                    <p class="portfolio-desc">Affiche réalisée pour Nog Technologie (campagne en cours).</p>
+                                </div>
+                            </div>
+
+                            <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-39')">
+                                <div class="portfolio-image">
+                                    <img src="images/portfolio/nog-photo-couverture-facebook-1.jpg" alt="Couverture Nog Technologie">
+                                    <div class="portfolio-overlay"><i class="fas fa-image"></i></div>
+                                </div>
+                                <div class="portfolio-info">
+                                    <div class="portfolio-category">COUVERTURE</div>
+                                    <h3 class="portfolio-title">Photo de couverture — Nog</h3>
+                                    <p class="portfolio-desc">Photo de couverture pour la page Facebook du client.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2538,6 +2592,24 @@
             <h2>Entraînement - Explorateur</h2>
             <p>Visuel d'entraînement réalisé avec Cinéma 4D, Photoshop et IA.</p>
             <img src="images/portfolio/Entrainement (Explorateur)-1.jpg" alt="Entrainement Explorateur" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-38" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-38')">&times;</span>
+            <h2>Affiche Publicitaire — Nog</h2>
+            <p>Affiche pour la campagne Nog Technologie.</p>
+            <img src="images/portfolio/nog-affiche-publicitaire-1.jpg" alt="Affiche Publicitaire Nog" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+        </div>
+    </div>
+
+    <div id="modal-39" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-39')">&times;</span>
+            <h2>Photo de couverture — Nog</h2>
+            <p>Photo de couverture Facebook pour Nog Technologie.</p>
+            <img src="images/portfolio/nog-photo-couverture-facebook-1.jpg" alt="Couverture Nog Technologie" style="max-width:100%; margin-top:16px; border-radius:8px;" />
         </div>
     </div>
 
