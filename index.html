@@ -514,6 +514,17 @@
             background: rgba(255, 138, 0, 0.1);
         }
 
+        .breadcrumb-btn.back-btn {
+            background: var(--primary-color);
+            color: var(--text-primary);
+            border: none;
+        }
+
+        .breadcrumb-btn.back-btn:hover {
+            background: rgba(255, 138, 0, 0.85);
+            transform: translateX(-3px);
+        }
+
         .breadcrumb-path {
             color: var(--text-secondary);
             font-size: 14px;
@@ -1582,8 +1593,8 @@
                         <div class="clients-explorer-container">
                             <!-- Breadcrumb / Navigation -->
                             <div class="clients-breadcrumb">
-                                <button class="breadcrumb-btn active" onclick="goToClientsRoot()" style="display: none;" id="breadcrumb-root">
-                                    <i class="fas fa-folder"></i> Clients
+                                   <button class="breadcrumb-btn back-btn" onclick="goToClientsRoot()" style="display: none;" id="breadcrumb-back">
+                                       <i class="fas fa-arrow-left"></i> Retour
                                 </button>
                                 <span class="breadcrumb-path" id="breadcrumb-path">Clients</span>
                             </div>
@@ -3075,14 +3086,14 @@
         function renderClientsExplorer() {
             const grid = document.getElementById('clients-grid');
             const breadcrumb = document.getElementById('breadcrumb-path');
-            const breadcrumbRoot = document.getElementById('breadcrumb-root');
+            const breadcrumbBack = document.getElementById('breadcrumb-back');
             grid.innerHTML = '';
 
             if (currentClientPath.length === 0) {
                 // Afficher les clients
                 grid.classList.remove('in-folder');
                 breadcrumb.textContent = 'Clients';
-                breadcrumbRoot.style.display = 'none';
+                breadcrumbBack.style.display = 'none';
 
                 Object.keys(clientsData).forEach(clientName => {
                     const fileCount = clientsData[clientName].length;
@@ -3103,8 +3114,8 @@
                 grid.classList.add('in-folder');
                 const clientName = currentClientPath[0];
                 const files = clientsData[clientName];
-                breadcrumb.textContent = clientName;
-                breadcrumbRoot.style.display = 'flex';
+                breadcrumb.textContent = '→ ' + clientName;
+                breadcrumbBack.style.display = 'flex';
 
                 files.forEach(file => {
                     const item = document.createElement('div');
