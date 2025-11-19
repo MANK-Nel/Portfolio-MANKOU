@@ -474,25 +474,269 @@
             gap: 30px;
         }
 
-        /* Client group (réutilisable) */
-        .client-group {
-            margin: 30px 0 18px;
-            padding: 12px;
-            background: transparent;
-            border-radius: 8px;
+        /* Clients Explorer Styles */
+        .clients-explorer-wrapper {
+            width: 100%;
+            padding: 0 30px;
         }
 
-        .client-group-header {
+        .clients-explorer-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .clients-breadcrumb {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
         }
 
-        .client-group-header h4 { color: var(--primary-color); font-size:18px; margin:0; font-weight:700; }
+        .breadcrumb-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
 
-        .client-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px; }
+        .breadcrumb-btn:hover {
+            background: rgba(255, 138, 0, 0.1);
+        }
+
+        .breadcrumb-path {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .client-item, .client-file-item {
+            background: var(--bg-dark);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-item:hover, .client-file-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(255, 138, 0, 0.15);
+        }
+
+        .client-icon, .file-icon {
+            font-size: 48px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 138, 0, 0.1);
+            border-radius: 10px;
+            color: var(--primary-color);
+        }
+
+        .client-name, .file-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            word-break: break-word;
+        }
+
+        .file-count {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .client-file-item .file-icon {
+            background: rgba(100, 150, 255, 0.1);
+            color: #6496ff;
+        }
+
+        .client-file-item[data-type="image"] .file-icon {
+            background: rgba(100, 200, 255, 0.1);
+            color: #64c8ff;
+        }
+
+        .client-file-item[data-type="video"] .file-icon {
+            background: rgba(255, 100, 100, 0.1);
+            color: #ff6464;
+        }
+
+        /* Vignettes d'images */
+        .client-file-item[data-type="image"] {
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .client-file-item[data-type="image"] .file-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .client-file-item[data-type="image"] .file-info {
+            padding: 12px;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .client-file-item[data-type="image"] .file-name {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Modal pour afficher fichiers client */
+        .file-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 20px;
+        }
+
+        .file-modal.active {
+            display: flex;
+        }
+
+        .file-modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .file-modal-header {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .file-modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-modal-close:hover {
+            color: var(--primary-color);
+        }
+
+        .file-modal-body {
+            padding: 30px;
+        }
+
+        .file-modal-body img,
+        .file-modal-body video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .file-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .clients-explorer-wrapper {
+                padding: 0 15px;
+            }
+
+            .clients-explorer-container {
+                padding: 20px;
+            }
+
+            .clients-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .client-item, .client-file-item {
+                padding: 20px 15px;
+                gap: 10px;
+            }
+
+            .client-icon, .file-icon {
+                font-size: 36px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .client-name, .file-name {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .client-item, .client-file-item {
+                padding: 15px 10px;
+            }
+
+            .client-icon, .file-icon {
+                font-size: 28px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .client-name, .file-name {
+                font-size: 12px;
+            }
+        }
         
         .portfolio-item {
             background: var(--card-bg);
@@ -1292,36 +1536,20 @@
                         </div>
                     </div>
 
-                    <!-- Bloc client : NOG Technologie (regroupe les projets du client) -->
-                    <div class="client-group" aria-label="Projets pour NOG Technologie">
-                        <div class="client-group-header">
-                            <h4>NOG Technologie</h4>
-                            <div style="color:var(--text-secondary); font-size:14px;">Projets en cours — espace réutilisable</div>
-                        </div>
-
-                        <div class="client-grid">
-                            <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-38')">
-                                <div class="portfolio-image">
-                                    <img src="images/portfolio/nog-affiche-publicitaire-1.jpg" alt="Affiche Publicitaire Nog">
-                                    <div class="portfolio-overlay"><i class="fas fa-image"></i></div>
-                                </div>
-                                <div class="portfolio-info">
-                                    <div class="portfolio-category">CLIENT</div>
-                                    <h3 class="portfolio-title">Affiche Publicitaire — Nog</h3>
-                                    <p class="portfolio-desc">Affiche réalisée pour Nog Technologie (campagne en cours).</p>
-                                </div>
+                    <!-- Bloc Explorateur Clients (remplace l'ancien bloc client) -->
+                    <div id="clients-explorer" class="clients-explorer-wrapper" style="margin-top: 40px;">
+                        <div class="clients-explorer-container">
+                            <!-- Breadcrumb / Navigation -->
+                            <div class="clients-breadcrumb">
+                                <button class="breadcrumb-btn active" onclick="goToClientsRoot()" style="display: none;" id="breadcrumb-root">
+                                    <i class="fas fa-folder"></i> Clients
+                                </button>
+                                <span class="breadcrumb-path" id="breadcrumb-path">Clients</span>
                             </div>
 
-                            <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-39')">
-                                <div class="portfolio-image">
-                                    <img src="images/portfolio/nog-photo-couverture-facebook-1.jpg" alt="Couverture Nog Technologie">
-                                    <div class="portfolio-overlay"><i class="fas fa-image"></i></div>
-                                </div>
-                                <div class="portfolio-info">
-                                    <div class="portfolio-category">COUVERTURE</div>
-                                    <h3 class="portfolio-title">Photo de couverture — Nog</h3>
-                                    <p class="portfolio-desc">Photo de couverture pour la page Facebook du client.</p>
-                                </div>
+                            <!-- Grille d'affichage (clients ou fichiers) -->
+                            <div class="clients-grid" id="clients-grid">
+                                <!-- Rempli par JavaScript -->
                             </div>
                         </div>
                     </div>
@@ -2771,6 +2999,151 @@
             document.getElementById(modalId).style.display = 'none';
         }
 
+        // ========== CLIENTS EXPLORER ==========
+        const clientsData = {
+            'Nog Technologie': [
+                {
+                    name: 'Affiche Publicitaire — Nog',
+                    type: 'image',
+                    url: 'images/portfolio/nog-affiche-publicitaire-1.jpg',
+                    description: 'Affiche pour la campagne Nog Technologie.'
+                },
+                {
+                    name: 'Photo de couverture — Nog',
+                    type: 'image',
+                    url: 'images/portfolio/nog-photo-couverture-facebook-1.jpg',
+                    description: 'Photo de couverture Facebook pour Nog Technologie.'
+                },
+                {
+                    name: 'Livreur — Affiche Publicitaire',
+                    type: 'image',
+                    url: 'images/portfolio/Livreur-Affiche Publicitaire-1 copie 2.jpg',
+                    description: 'Affiche Livreur pour la campagne Nog Technologie.'
+                },
+                {
+                    name: 'Promotion — Affiche Publicitaire',
+                    type: 'image',
+                    url: 'images/portfolio/Promotion - Affiche Publicitaire-1 copie 2.jpg',
+                    description: 'Affiche Promotion pour la campagne Nog Technologie.'
+                }
+            ]
+        };
+
+        let currentClientPath = [];
+
+        function renderClientsExplorer() {
+            const grid = document.getElementById('clients-grid');
+            const breadcrumb = document.getElementById('breadcrumb-path');
+            const breadcrumbRoot = document.getElementById('breadcrumb-root');
+            grid.innerHTML = '';
+
+            if (currentClientPath.length === 0) {
+                // Afficher les clients
+                breadcrumb.textContent = 'Clients';
+                breadcrumbRoot.style.display = 'none';
+
+                Object.keys(clientsData).forEach(clientName => {
+                    const fileCount = clientsData[clientName].length;
+                    const item = document.createElement('div');
+                    item.className = 'client-item';
+                    item.onclick = () => openClientFolder(clientName);
+                    item.innerHTML = `
+                        <div class="client-icon">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="client-name">${clientName}</div>
+                        <div class="file-count">${fileCount} fichier${fileCount > 1 ? 's' : ''}</div>
+                    `;
+                    grid.appendChild(item);
+                });
+            } else {
+                // Afficher les fichiers du client
+                const clientName = currentClientPath[0];
+                const files = clientsData[clientName];
+                breadcrumb.textContent = clientName;
+                breadcrumbRoot.style.display = 'flex';
+
+                files.forEach(file => {
+                    const item = document.createElement('div');
+                    item.className = 'client-file-item';
+                    item.setAttribute('data-type', file.type);
+                    item.onclick = () => openClientFile(file);
+
+                    if (file.type === 'image') {
+                        // Afficher vignette image
+                        item.innerHTML = `
+                            <img src="${file.url}" alt="${file.name}" class="file-thumbnail" />
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                            </div>
+                        `;
+                    } else {
+                        // Afficher icône pour vidéo
+                        let icon = 'file';
+                        if (file.type === 'video') icon = 'video';
+
+                        item.innerHTML = `
+                            <div class="file-icon">
+                                <i class="fas fa-${icon}"></i>
+                            </div>
+                            <div class="file-name">${file.name}</div>
+                        `;
+                    }
+                    grid.appendChild(item);
+                });
+            }
+        }
+
+        function openClientFolder(clientName) {
+            currentClientPath = [clientName];
+            renderClientsExplorer();
+        }
+
+        function goToClientsRoot() {
+            currentClientPath = [];
+            renderClientsExplorer();
+        }
+
+        function openClientFile(file) {
+            const modal = document.createElement('div');
+            modal.className = 'file-modal active';
+            modal.id = 'client-file-modal';
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            };
+
+            let content = '';
+            if (file.type === 'image') {
+                content = `<img src="${file.url}" alt="${file.name}" />`;
+            } else if (file.type === 'video') {
+                content = `<video controls style="width:100%; border-radius: 10px;"><source src="${file.url}" type="video/mp4"></video>`;
+            }
+
+            modal.innerHTML = `
+                <div class="file-modal-content">
+                    <div class="file-modal-header">
+                        <h3 style="margin: 0; font-size: 18px; flex: 1;">${file.name}</h3>
+                        <button class="file-modal-close" onclick="document.getElementById('client-file-modal').remove()">×</button>
+                    </div>
+                    <div class="file-modal-body">
+                        ${content}
+                        <p class="file-description">${file.description}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Initialiser l'explorateur au chargement
+        function initClientsExplorer() {
+            if (document.getElementById('clients-grid')) {
+                renderClientsExplorer();
+            }
+        }
+        // ========== FIN CLIENTS EXPLORER ==========
+
         // WhatsApp function
         function sendWhatsAppMessage() {
             const phoneNumber = "241077101378";
@@ -2798,6 +3171,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             setActiveMenu();
             animateCounters();
+            initClientsExplorer();
         });
     </script>
 
