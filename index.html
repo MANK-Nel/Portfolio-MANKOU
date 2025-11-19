@@ -525,6 +525,11 @@
             gap: 25px;
         }
 
+        .clients-grid.in-folder {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
         .client-item, .client-file-item {
             background: var(--bg-dark);
             border: 2px solid var(--border-color);
@@ -593,9 +598,13 @@
 
         .client-file-item[data-type="image"] .file-thumbnail {
             width: 100%;
-            height: 200px;
+            height: 140px;
             object-fit: cover;
             display: block;
+        }
+
+        .clients-grid.in-folder .client-file-item[data-type="image"] .file-thumbnail {
+            height: 130px;
         }
 
         .client-file-item[data-type="image"] .file-info {
@@ -696,45 +705,77 @@
                 padding: 20px;
             }
 
-            .clients-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .client-item, .client-file-item {
-                padding: 20px 15px;
-                gap: 10px;
-            }
-
-            .client-icon, .file-icon {
-                font-size: 36px;
-                width: 50px;
-                height: 50px;
-            }
-
-            .client-name, .file-name {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .clients-grid {
-                grid-template-columns: repeat(2, 1fr);
+            /* Grille pour les clients (racine) */
+            .clients-grid:not(.in-folder) {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
                 gap: 12px;
             }
 
+            /* Grille pour les fichiers dans les dossiers clients */
+            .clients-grid.in-folder {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 10px;
+            }
+
             .client-item, .client-file-item {
-                padding: 15px 10px;
+                padding: 15px 12px;
+                gap: 8px;
+            }
+
+            .client-file-item[data-type="image"] .file-thumbnail {
+                height: 100px;
+            }
+
+            .client-file-item[data-type="image"] .file-info {
+                padding: 10px;
             }
 
             .client-icon, .file-icon {
-                font-size: 28px;
-                width: 40px;
-                height: 40px;
+                font-size: 32px;
+                width: 45px;
+                height: 45px;
             }
 
             .client-name, .file-name {
                 font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Grille pour les clients (racine) - 2 colonnes */
+            .clients-grid:not(.in-folder) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            /* Grille pour les fichiers dans les dossiers clients - 2 colonnes optimisée */
+            .clients-grid.in-folder {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .client-item, .client-file-item {
+                padding: 12px 10px;
+            }
+
+            .client-file-item[data-type="image"] .file-thumbnail {
+                height: 90px;
+            }
+
+            .client-file-item[data-type="image"] .file-info {
+                padding: 8px;
+            }
+
+            .client-icon, .file-icon {
+                font-size: 24px;
+                width: 35px;
+                height: 35px;
+            }
+
+            .client-name, .file-name {
+                font-size: 11px;
+                font-weight: 600;
+                line-height: 1.2;
             }
         }
         
@@ -3039,6 +3080,7 @@
 
             if (currentClientPath.length === 0) {
                 // Afficher les clients
+                grid.classList.remove('in-folder');
                 breadcrumb.textContent = 'Clients';
                 breadcrumbRoot.style.display = 'none';
 
@@ -3058,6 +3100,7 @@
                 });
             } else {
                 // Afficher les fichiers du client
+                grid.classList.add('in-folder');
                 const clientName = currentClientPath[0];
                 const files = clientsData[clientName];
                 breadcrumb.textContent = clientName;
