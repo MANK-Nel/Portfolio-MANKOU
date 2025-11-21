@@ -60,6 +60,23 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+        }        
+        /* Performance Optimization */
+        img, video {
+            aspect-ratio: auto;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .portfolio-image img,
+        .portfolio-image video,
+        .file-thumbnail {
+            will-change: opacity;
+            transition: opacity 0.3s ease;
+        }
+        
+        img[loading=lazy] {
+            background: var(--bg-darker);
         }
         
         /* Sidebar Navigation */
@@ -1450,7 +1467,7 @@
     <nav class="sidebar" id="sidebar">
         <div class="profile-section">
             <div class="profile-image">
-                <img src="images/profile-pic.jpg" alt="MANKOU MADOUMA Nel Brunel">
+                <img src="images/profile-pic.jpg" alt="MANKOU MADOUMA Nel Brunel" loading="lazy">
             </div>
             <h2 class="profile-name">MANKOU MADOUMA<br>Nel Brunel</h2>
             <p class="profile-title">Web Designer | UI-UX Designer</p>
@@ -1620,7 +1637,7 @@
                     <div class="portfolio-item hover-lift">
                         <div class="portfolio-image">
                             <!-- Vous pourrez ajouter votre image ici -->
-                            <img src="images/portfolio/jury-blog.jpg" alt="Membre du jury AUMT">
+                            <img src="images/portfolio/jury-blog.jpg" alt="Membre du jury AUMT" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-graduation-cap"></i>
                             </div>
@@ -1635,7 +1652,7 @@
                     
                     <div class="portfolio-item hover-lift">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/NASA.png" alt="NASA Space Apps Challenge">
+                            <img src="images/portfolio/NASA.png" alt="NASA Space Apps Challenge" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-rocket"></i>
                             </div>
@@ -1653,7 +1670,7 @@
 
                     <div class="portfolio-item hover-lift" onclick="openModal('modal-33')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/La cérémonie de remise des certificats .jpg" alt="Cérémonie de remise des certificats">
+                            <img src="images/portfolio/La cérémonie de remise des certificats .jpg" alt="Cérémonie de remise des certificats" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-newspaper"></i>
                             </div>
@@ -1668,7 +1685,7 @@
 
                     <div class="portfolio-item hover-lift" onclick="openModal('modal-34')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Entrain de dispenser des cours en tant que coach en Marketing Digital.jpg" alt="Entrainement coaching Marketing Digital">
+                            <img src="images/portfolio/Entrain de dispenser des cours en tant que coach en Marketing Digital.jpg" alt="Entrainement coaching Marketing Digital" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-chalkboard-teacher"></i>
                             </div>
@@ -1819,12 +1836,12 @@
                         </div>
                         <div class="clients-carousel">
                             <div class="clients-track">
-                                <img src="images/clients/Rabanel Auto Ecole.png" alt="Rabanel Auto Ecole" />
-                                <img src="images/clients/Ecole 241.png" alt="Ecole 241" />
-                                <img src="images/clients/Ogouee Labs.png" alt="Ogouee Labs" />
-                                <img src="images/clients/Rabanel Auto Ecole.png" alt="Rabanel Auto Ecole" />
-                                <img src="images/clients/Ecole 241.png" alt="Ecole 241" />
-                                <img src="images/clients/Ogouee Labs.png" alt="Ogouee Labs" />
+                                <img src="images/clients/Rabanel Auto Ecole.png" alt="Rabanel Auto Ecole" / loading="lazy">
+                                <img src="images/clients/Ecole 241.png" alt="Ecole 241" / loading="lazy">
+                                <img src="images/clients/Ogouee Labs.png" alt="Ogouee Labs" / loading="lazy">
+                                <img src="images/clients/Rabanel Auto Ecole.png" alt="Rabanel Auto Ecole" / loading="lazy">
+                                <img src="images/clients/Ecole 241.png" alt="Ecole 241" / loading="lazy">
+                                <img src="images/clients/Ogouee Labs.png" alt="Ogouee Labs" / loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -1847,7 +1864,7 @@
                 <div class="portfolio-grid">
                     <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-01')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Maquette site E-commerce.png" alt="Maquette E-commerce">
+                            <img src="images/portfolio/Maquette site E-commerce.png" alt="Maquette E-commerce" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-search-plus"></i>
                             </div>
@@ -1861,7 +1878,7 @@
                     
                     <div class="portfolio-item hover-lift" data-category="link" onclick="openModal('modal-02')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Landing Page Jus d'orange.png" alt="Landing Page">
+                            <img src="images/portfolio/Landing Page Jus d'orange.png" alt="Landing Page" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-external-link-alt"></i>
                             </div>
@@ -1875,7 +1892,7 @@
                     
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-03')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/385shots_so.jpeg" alt="Design Collection">
+                            <img src="images/portfolio/385shots_so.jpeg" alt="Design Collection" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-images"></i>
                             </div>
@@ -1889,7 +1906,7 @@
                     
                     <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-04')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/3D---Communication---MANKOU--Nel.jpg" alt="Communication 3D">
+                            <img src="images/portfolio/3D---Communication---MANKOU--Nel.jpg" alt="Communication 3D" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-cube"></i>
                             </div>
@@ -1904,7 +1921,7 @@
                     <!-- Nouveaux éléments ajoutés depuis le dossier images/portfolio -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-05')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Octobre Affiche - Chronos-Services -  copie 4.jpg" alt="Octobre Affiche - Chronos Services">
+                            <img src="images/portfolio/Octobre Affiche - Chronos-Services -  copie 4.jpg" alt="Octobre Affiche - Chronos Services" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -1918,7 +1935,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-06')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Miniature Photo-1.jpg" alt="Miniature Photo">
+                            <img src="images/portfolio/Miniature Photo-1.jpg" alt="Miniature Photo" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-images"></i>
                             </div>
@@ -1932,7 +1949,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-07')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/news design 1.jpg" alt="News Design">
+                            <img src="images/portfolio/news design 1.jpg" alt="News Design" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-newspaper"></i>
                             </div>
@@ -1946,7 +1963,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-08')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Coach-Jesse.jpg" alt="Coach Jesse">
+                            <img src="images/portfolio/Coach-Jesse.jpg" alt="Coach Jesse" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-images"></i>
                             </div>
@@ -1961,7 +1978,7 @@
                     <!-- Ajout : nouvelles images fournies -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-09')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Photo de couverture Facebook.jpg" alt="Photo de couverture Facebook">
+                            <img src="images/portfolio/Photo de couverture Facebook.jpg" alt="Photo de couverture Facebook" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -1975,7 +1992,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-10')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/3D-Templates---MANKOU--Nel-copie.jpg" alt="3D Templates">
+                            <img src="images/portfolio/3D-Templates---MANKOU--Nel-copie.jpg" alt="3D Templates" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-cube"></i>
                             </div>
@@ -1989,7 +2006,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-11')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Eglise-MANKOU--Nel-copie.jpg" alt="Eglise MANKOU">
+                            <img src="images/portfolio/Eglise-MANKOU--Nel-copie.jpg" alt="Eglise MANKOU" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-church"></i>
                             </div>
@@ -2003,7 +2020,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-12')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Style-Africain---MANKOU--Nel-copie.jpg" alt="Style Africain">
+                            <img src="images/portfolio/Style-Africain---MANKOU--Nel-copie.jpg" alt="Style Africain" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-palette"></i>
                             </div>
@@ -2018,7 +2035,7 @@
                     <!-- Trois nouvelles affiches ajoutées -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-13')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Fête du travail.jpeg" alt="Fête du travail">
+                            <img src="images/portfolio/Fête du travail.jpeg" alt="Fête du travail" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-flag"></i>
                             </div>
@@ -2032,7 +2049,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-14')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/''Chaque matin est une nouvelle opportunité de s'inspirer et de créer_''.jpeg" alt="Chaque matin">
+                            <img src="images/portfolio/''Chaque matin est une nouvelle opportunité de s'inspirer et de créer_''.jpeg" alt="Chaque matin" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-sun"></i>
                             </div>
@@ -2046,7 +2063,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-15')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/492246840_122180366390337384_1124228023582274282_n.jpg" alt="Affiche numéro">
+                            <img src="images/portfolio/492246840_122180366390337384_1124228023582274282_n.jpg" alt="Affiche numéro" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-ad"></i>
                             </div>
@@ -2061,7 +2078,7 @@
                     <!-- Vidéos Figma -->
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-16')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Aperçu d'un terface de connexion.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Aperçu d'un terface de connexion.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2075,7 +2092,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-17')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Aperçu d'une application de série et film Gabon sur Figma.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Aperçu d'une application de série et film Gabon sur Figma.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2089,7 +2106,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-18')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Application pour écouter de la musique.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Application pour écouter de la musique.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2103,7 +2120,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-19')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Ecouteurs sans fil.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Ecouteurs sans fil.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2117,7 +2134,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-20')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Montres.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Montres.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2131,7 +2148,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-21')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Présentation de bouteille de jus sur figma.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Présentation de bouteille de jus sur figma.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2145,7 +2162,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-22')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Figma/Tutoriel.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Figma/Tutoriel.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2160,7 +2177,7 @@
                     <!-- Vidéos Photoshop -->
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-23')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Phtoshop/tutoriel Photoshop (2).mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Phtoshop/tutoriel Photoshop (2).mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2174,7 +2191,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="video" onclick="openModal('modal-24')">
                         <div class="portfolio-image">
-                            <video src="Vidéos/Phtoshop/Tutoriel Photoshop.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;"></video>
+                            <video src="Vidéos/Phtoshop/Tutoriel Photoshop.mp4" muted playsinline loop style="max-width:100%; max-height:100%; object-fit:contain;" loading="lazy"></video>
                             <div class="portfolio-overlay">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2189,7 +2206,7 @@
                     <!-- Images récemment ajoutées au dossier images/portfolio -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-25')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/2Fich.png" alt="2Fich">
+                            <img src="images/portfolio/2Fich.png" alt="2Fich" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2203,7 +2220,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-26')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Affiche Toussaint-1.jpg" alt="Affiche Toussaint">
+                            <img src="images/portfolio/Affiche Toussaint-1.jpg" alt="Affiche Toussaint" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2217,7 +2234,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-27')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Soirée (Glen)-1.jpg" alt="Soirée Glen">
+                            <img src="images/portfolio/Soirée (Glen)-1.jpg" alt="Soirée Glen" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2231,7 +2248,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-28')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/(Sponsoritsation) Instruction Formulaire  2025 - Design Chronos-Services1 copie 5.jpg" alt="Sponsorisation Instruction Formulaire">
+                            <img src="images/portfolio/(Sponsoritsation) Instruction Formulaire  2025 - Design Chronos-Services1 copie 5.jpg" alt="Sponsorisation Instruction Formulaire" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2246,7 +2263,7 @@
                     <!-- Nouvelles images ajoutées cette semaine -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-29')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Visuel pour la page Facebook de Green Bazar.jpg" alt="Visuel Green Bazar">
+                            <img src="images/portfolio/Visuel pour la page Facebook de Green Bazar.jpg" alt="Visuel Green Bazar" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2260,7 +2277,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-30')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Intelligence numérique-2.jpg" alt="Intelligence numérique">
+                            <img src="images/portfolio/Intelligence numérique-2.jpg" alt="Intelligence numérique" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2274,7 +2291,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-31')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Photo de couverture Facebook (2).jpg" alt="Photo de couverture Facebook 2">
+                            <img src="images/portfolio/Photo de couverture Facebook (2).jpg" alt="Photo de couverture Facebook 2" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2288,7 +2305,7 @@
 
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-32')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Une affiche que j'ai réalisé pour m'entrainer.jpg" alt="Affiche entrainement">
+                            <img src="images/portfolio/Une affiche que j'ai réalisé pour m'entrainer.jpg" alt="Affiche entrainement" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2303,7 +2320,7 @@
                     <!-- Ajout: nouvelle photo de couverture  -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-35')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/2Photo de couverture Facebook1.jpg" alt="Photo de couverture 1">
+                            <img src="images/portfolio/2Photo de couverture Facebook1.jpg" alt="Photo de couverture 1" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2318,7 +2335,7 @@
                     <!-- Ajout: visuel d'entraînement (Cinéma 4D + Photoshop + IA) -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-36')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/Entrainement (Explorateur)-1.jpg" alt="Entrainement Explorateur">
+                            <img src="images/portfolio/Entrainement (Explorateur)-1.jpg" alt="Entrainement Explorateur" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2333,7 +2350,7 @@
                     <!-- Ajout: BECTO DE LEATI -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-37')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/BECTO DE LOULOU-1.jpg" alt="BECTO DE LEATI">
+                            <img src="images/portfolio/BECTO DE LOULOU-1.jpg" alt="BECTO DE LEATI" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-image"></i>
                             </div>
@@ -2348,7 +2365,7 @@
                     <!-- Ajout: 3D Chronos-Services -->
                     <div class="portfolio-item hover-lift" data-category="content" onclick="openModal('modal-40')">
                         <div class="portfolio-image">
-                            <img src="images/portfolio/3D Chronos-Services-1 copie.jpg" alt="3D Chronos-Services">
+                            <img src="images/portfolio/3D Chronos-Services-1 copie.jpg" alt="3D Chronos-Services" loading="lazy" loading="lazy">
                             <div class="portfolio-overlay">
                                 <i class="fas fa-cube"></i>
                             </div>
@@ -2588,7 +2605,7 @@
             <span class="modal-close" onclick="closeModal('modal-05')">&times;</span>
             <h2>Affiche Chronos-Services</h2>
             <p>Affiche publicitaire réalisée pour Chronos-Services — design et mise en page.</p>
-            <img src="images/portfolio/Octobre Affiche - Chronos-Services -  copie 4.jpg" alt="Affiche Chronos-Services" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Octobre Affiche - Chronos-Services -  copie 4.jpg" alt="Affiche Chronos-Services" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2597,7 +2614,7 @@
             <span class="modal-close" onclick="closeModal('modal-06')">&times;</span>
             <h2>Miniature Photo</h2>
             <p>Miniature réalisée pour une campagne vidéo / miniature YouTube.</p>
-            <img src="images/portfolio/Miniature Photo-1.jpg" alt="Miniature Photo" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Miniature Photo-1.jpg" alt="Miniature Photo" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2606,7 +2623,7 @@
             <span class="modal-close" onclick="closeModal('modal-07')">&times;</span>
             <h2>News Design</h2>
             <p>Design d'une couverture ou visuel d'actualité pour communication digitale.</p>
-            <img src="images/portfolio/news design 1.jpg" alt="News Design" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/news design 1.jpg" alt="News Design" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2615,7 +2632,7 @@
             <span class="modal-close" onclick="closeModal('modal-08')">&times;</span>
             <h2>Coach Jesse - Miniature</h2>
             <p>Miniature et visuel pour une vidéo promotionnelle du Coach Jesse.</p>
-            <img src="images/portfolio/Coach-Jesse.jpg" alt="Coach Jesse" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Coach-Jesse.jpg" alt="Coach Jesse" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2624,7 +2641,7 @@
             <span class="modal-close" onclick="closeModal('modal-09')">&times;</span>
             <h2>Photo de couverture Facebook</h2>
             <p>Photo de couverture conçue pour une page Facebook professionnelle.</p>
-            <img src="images/portfolio/Photo de couverture Facebook.jpg" alt="Photo de couverture Facebook" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Photo de couverture Facebook.jpg" alt="Photo de couverture Facebook" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2633,7 +2650,7 @@
             <span class="modal-close" onclick="closeModal('modal-10')">&times;</span>
             <h2>3D Templates</h2>
             <p>Templates 3D et maquettes pour supports de communication.</p>
-            <img src="images/portfolio/3D-Templates---MANKOU--Nel-copie.jpg" alt="3D Templates" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/3D-Templates---MANKOU--Nel-copie.jpg" alt="3D Templates" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2642,7 +2659,7 @@
             <span class="modal-close" onclick="closeModal('modal-11')">&times;</span>
             <h2>Eglise - Visuel</h2>
             <p>Visuel créé pour une église/manifestation communautaire.</p>
-            <img src="images/portfolio/Eglise-MANKOU--Nel-copie.jpg" alt="Eglise MANKOU" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Eglise-MANKOU--Nel-copie.jpg" alt="Eglise MANKOU" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2651,7 +2668,7 @@
             <span class="modal-close" onclick="closeModal('modal-12')">&times;</span>
             <h2>Style Africain</h2>
             <p>Visuel au style africain — pattern, typographie et couleur.</p>
-            <img src="images/portfolio/Style-Africain---MANKOU--Nel-copie.jpg" alt="Style Africain" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Style-Africain---MANKOU--Nel-copie.jpg" alt="Style Africain" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2660,7 +2677,7 @@
             <span class="modal-close" onclick="closeModal('modal-13')">&times;</span>
             <h2>Fête du travail</h2>
             <p>Affiche publicitaire créée pour célébrer la fête du travail.</p>
-            <img src="images/portfolio/Fête du travail.jpeg" alt="Fête du travail" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Fête du travail.jpeg" alt="Fête du travail" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2669,7 +2686,7 @@
             <span class="modal-close" onclick="closeModal('modal-14')">&times;</span>
             <h2>Chaque matin</h2>
             <p>Affiche inspirante pour communication matinale.</p>
-            <img src="images/portfolio/''Chaque matin est une nouvelle opportunité de s'inspirer et de créer_''.jpeg" alt="Chaque matin" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/''Chaque matin est une nouvelle opportunité de s'inspirer et de créer_''.jpeg" alt="Chaque matin" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2678,7 +2695,7 @@
             <span class="modal-close" onclick="closeModal('modal-15')">&times;</span>
             <h2>Affiche promo</h2>
             <p>Affiche publicitaire (visuel promotionnel).</p>
-            <img src="images/portfolio/492246840_122180366390337384_1124228023582274282_n.jpg" alt="Affiche promo" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/492246840_122180366390337384_1124228023582274282_n.jpg" alt="Affiche promo" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2687,7 +2704,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-16')">&times;</span>
             <h2>Aperçu interface de connexion</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Aperçu d'un terface de connexion.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2698,7 +2715,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-17')">&times;</span>
             <h2>App séries & films (Figma)</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Aperçu d'une application de série et film Gabon sur Figma.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2709,7 +2726,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-18')">&times;</span>
             <h2>Application musique</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Application pour écouter de la musique.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2720,7 +2737,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-19')">&times;</span>
             <h2>Ecouteurs sans fil</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Ecouteurs sans fil.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2731,7 +2748,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-20')">&times;</span>
             <h2>Montres</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Montres.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2742,7 +2759,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-21')">&times;</span>
             <h2>Bouteille de jus</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Présentation de bouteille de jus sur figma.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2753,7 +2770,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-22')">&times;</span>
             <h2>Tutoriel (Figma)</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Figma/Tutoriel.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2764,7 +2781,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-23')">&times;</span>
             <h2>Tutoriel Photoshop (2)</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Phtoshop/tutoriel Photoshop (2).mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2775,7 +2792,7 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modal-24')">&times;</span>
             <h2>Tutoriel Photoshop</h2>
-            <video controls style="width:100%; max-height:60vh; object-fit:contain;">
+            <video controls style="width:100%; max-height:60vh; object-fit:contain;" loading="lazy">
                 <source src="Vidéos/Phtoshop/Tutoriel Photoshop.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
@@ -2787,7 +2804,7 @@
             <span class="modal-close" onclick="closeModal('modal-25')">&times;</span>
             <h2>2Fich</h2>
             <p>Visuel ajouté récemment.</p>
-            <img src="images/portfolio/2Fich.png" alt="2Fich" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/2Fich.png" alt="2Fich" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2796,7 +2813,7 @@
             <span class="modal-close" onclick="closeModal('modal-26')">&times;</span>
             <h2>Affiche Toussaint</h2>
             <p>Affiche réalisée pour Toussaint.</p>
-            <img src="images/portfolio/Affiche Toussaint-1.jpg" alt="Affiche Toussaint" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Affiche Toussaint-1.jpg" alt="Affiche Toussaint" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2805,7 +2822,7 @@
             <span class="modal-close" onclick="closeModal('modal-27')">&times;</span>
             <h2>Soirée</h2>
             <p>Affiche pour événement soirée.</p>
-            <img src="images/portfolio/Soirée (Glen)-1.jpg" alt="Soirée Glen" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Soirée (Glen)-1.jpg" alt="Soirée Glen" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2814,7 +2831,7 @@
             <span class="modal-close" onclick="closeModal('modal-28')">&times;</span>
             <h2>Sponsorisation - Formulaire 2025</h2>
             <p>Visuel sponsorisation / formulaire 2025.</p>
-            <img src="images/portfolio/(Sponsoritsation) Instruction Formulaire  2025 - Design Chronos-Services1 copie 5.jpg" alt="Sponsorisation Formulaire" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/(Sponsoritsation) Instruction Formulaire  2025 - Design Chronos-Services1 copie 5.jpg" alt="Sponsorisation Formulaire" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2823,7 +2840,7 @@
             <span class="modal-close" onclick="closeModal('modal-29')">&times;</span>
             <h2>Visuel Green Bazar</h2>
             <p>Visuel réalisé pour la page Facebook de Green Bazar.</p>
-            <img src="images/portfolio/Visuel pour la page Facebook de Green Bazar.jpg" alt="Visuel Green Bazar" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Visuel pour la page Facebook de Green Bazar.jpg" alt="Visuel Green Bazar" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2832,7 +2849,7 @@
             <span class="modal-close" onclick="closeModal('modal-30')">&times;</span>
             <h2>Intelligence numérique</h2>
             <p>Affiche réalisée pour une conférence sur l'intelligence numérique.</p>
-            <img src="images/portfolio/Intelligence numérique-2.jpg" alt="Intelligence numérique" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Intelligence numérique-2.jpg" alt="Intelligence numérique" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2841,7 +2858,7 @@
             <span class="modal-close" onclick="closeModal('modal-31')">&times;</span>
             <h2>Photo de couverture (2)</h2>
             <p>Variation de photo de couverture pour Facebook.</p>
-            <img src="images/portfolio/Photo de couverture Facebook (2).jpg" alt="Photo de couverture Facebook 2" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Photo de couverture Facebook (2).jpg" alt="Photo de couverture Facebook 2" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2850,7 +2867,7 @@
             <span class="modal-close" onclick="closeModal('modal-32')">&times;</span>
             <h2>Affiche entraînement</h2>
             <p>Affiche réalisée pour s'entraîner et expérimenter des compositions.</p>
-            <img src="images/portfolio/Une affiche que j'ai réalisé pour m'entrainer.jpg" alt="Affiche entrainement" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Une affiche que j'ai réalisé pour m'entrainer.jpg" alt="Affiche entrainement" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2859,7 +2876,7 @@
             <span class="modal-close" onclick="closeModal('modal-33')">&times;</span>
             <h2>Cérémonie de remise des certificats</h2>
             <p>Retour en images sur la cérémonie de remise des certificats.</p>
-            <img src="images/portfolio/Cérémonie de remise des certificats (01).jpg" alt="Cérémonie certificats" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Cérémonie de remise des certificats (01).jpg" alt="Cérémonie certificats" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2868,7 +2885,7 @@
             <span class="modal-close" onclick="closeModal('modal-34')">&times;</span>
             <h2>Session de formation - Marketing Digital</h2>
             <p>Session en images de la formation dispensée en Marketing Digital.</p>
-            <img src="images/portfolio/Entrain de dispenser des cours en tant que coach en Marketing Digital.jpg" alt="Session formation" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Entrain de dispenser des cours en tant que coach en Marketing Digital.jpg" alt="Session formation" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2877,7 +2894,7 @@
             <span class="modal-close" onclick="closeModal('modal-35')">&times;</span>
             <h2>Photo de couverture (nouvelle)</h2>
             <p>Nouvelle photo de couverture fournie par l'utilisateur.</p>
-            <img src="images/portfolio/2Photo de couverture Facebook1.jpg" alt="Photo de couverture 1" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/2Photo de couverture Facebook1.jpg" alt="Photo de couverture 1" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2886,7 +2903,7 @@
             <span class="modal-close" onclick="closeModal('modal-36')">&times;</span>
             <h2>Entraînement - Explorateur</h2>
             <p>Visuel d'entraînement réalisé avec Cinéma 4D, Photoshop et IA.</p>
-            <img src="images/portfolio/Entrainement (Explorateur)-1.jpg" alt="Entrainement Explorateur" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/Entrainement (Explorateur)-1.jpg" alt="Entrainement Explorateur" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2895,7 +2912,7 @@
             <span class="modal-close" onclick="closeModal('modal-38')">&times;</span>
             <h2>Affiche Publicitaire — Nog</h2>
             <p>Affiche pour la campagne Nog Technologie.</p>
-            <img src="images/portfolio/nog-affiche-publicitaire-1.jpg" alt="Affiche Publicitaire Nog" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/nog-affiche-publicitaire-1.jpg" alt="Affiche Publicitaire Nog" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2904,7 +2921,7 @@
             <span class="modal-close" onclick="closeModal('modal-39')">&times;</span>
             <h2>Photo de couverture — Nog</h2>
             <p>Photo de couverture Facebook pour Nog Technologie.</p>
-            <img src="images/portfolio/nog-photo-couverture-facebook-1.jpg" alt="Couverture Nog Technologie" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/nog-photo-couverture-facebook-1.jpg" alt="Couverture Nog Technologie" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2913,7 +2930,7 @@
             <span class="modal-close" onclick="closeModal('modal-37')">&times;</span>
             <h2>BECTO DE LEATI</h2>
             <p>Affiche créative pour BECTO DE LEATI.</p>
-            <img src="images/portfolio/BECTO DE LOULOU-1.jpg" alt="BECTO DE LEATI" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/BECTO DE LOULOU-1.jpg" alt="BECTO DE LEATI" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -2922,7 +2939,7 @@
             <span class="modal-close" onclick="closeModal('modal-40')">&times;</span>
             <h2>3D Chronos-Services</h2>
             <p>Création 3D réalisée pour Chronos-Services avec design moderne et impact visuel.</p>
-            <img src="images/portfolio/3D Chronos-Services-1 copie.jpg" alt="3D Chronos-Services" style="max-width:100%; margin-top:16px; border-radius:8px;" />
+            <img src="images/portfolio/3D Chronos-Services-1 copie.jpg" alt="3D Chronos-Services" style="max-width:100%; margin-top:16px; border-radius:8px;" / loading="lazy" loading="lazy">
         </div>
     </div>
 
@@ -3178,7 +3195,7 @@
             if (file.type === 'image') {
                 content = `<img src="${file.url}" alt="${file.name}" />`;
             } else if (file.type === 'video') {
-                content = `<video controls style="width:100%; border-radius: 10px;"><source src="${file.url}" type="video/mp4"></video>`;
+                content = `<video controls style="width:100%; border-radius: 10px;" loading="lazy"><source src="${file.url}" type="video/mp4"></video>`;
             }
 
             modal.innerHTML = `
@@ -3332,6 +3349,10 @@ function showSuccessModal() {
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
