@@ -1410,57 +1410,22 @@
             background: transparent; 
         }
 
-        const clientsData = {
-            'Nog Technologie': [
-                {
-                    name: 'Affiche Publicitaire — Nog',
-                    type: 'image',
-                    url: 'images/portfolio/nog-affiche-publicitaire-1.jpg',
-                    description: 'Affiche pour la campagne Nog Technologie.'
-                },
-                {
-                    name: 'Photo de couverture — Nog',
-                    type: 'image',
-                    url: 'images/portfolio/nog-photo-couverture-facebook-1.jpg',
-                    description: 'Photo de couverture Facebook pour Nog Technologie.'
-                },
-                {
-                    name: 'Livreur — Affiche Publicitaire',
-                    type: 'image',
-                    url: 'images/portfolio/Livreur-Affiche Publicitaire-1 copie 2.jpg',
-                    description: 'Affiche Livreur pour la campagne Nog Technologie.'
-                },
-                {
-                    name: 'Promotion — Affiche Publicitaire',
-                    type: 'image',
-                    url: 'images/portfolio/Promotion - Affiche Publicitaire-1 copie 2.jpg',
-                    description: 'Affiche Promotion pour la campagne Nog Technologie.'
-                },
-                {
-                    name: 'Semaine  Affiche Publicitaire',
-                    type: 'image',
-                    url: 'images/portfolio/Semaine - Affiche Publicitaire-1 copie 3.jpg',
-                    description: 'Affiche Semaine pour la campagne Nog Technologie.'
-                }
-            ],
+        /* clientsData removed from head to avoid breaking styles; defined later in script. */
 
-            'Rabanel Auto Ecole': [
-                { name: 'Conseil Auto Ecole', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Conseil-Auto-Ecole1-copie.jpg', description: 'Visuel conseil Rabanel.' },
-                { name: 'Dernière semaine promo', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Dernière semaine promo Auto Ecole1 copie 3.jpg', description: 'Promo de la dernière semaine.' },
-                { name: 'Fête nationale', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/fête nationale - Auto Ecole1 copie 5.jpg', description: 'Visuel fête nationale.' },
-                { name: 'Novembre Auto Ecole', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Novembre Auto Ecole1 copie 6.jpg', description: 'Affiche Novembre.' },
-                { name: 'Octobre Excellente Semaine 4', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Octobre Excellente Semaine Auto Ecole1 copie 4.jpg', description: 'Semaine octobre version 4.' },
-                { name: 'Octobre Excellente Semaine 5', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Octobre Excellente Semaine Auto Ecole1 copie 5.jpg', description: 'Semaine octobre version 5.' },
-                { name: 'Octobre Excellente Semaine 5b', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Octobre Excellente Semaine Auto Ecole1 copie 5b.jpg', description: 'Semaine octobre version 5b.' },
-                { name: 'Octobre Formule Permis', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Octobre Formule permis1.jpg', description: 'Formule permis.' },
-                { name: 'Quizz Septembre', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/Quizz Septembre Auto Ecole1 copie 4.jpg', description: 'Quizz Septembre.' },
-                { name: 'XNews Novembre', type: 'image', url: 'images/portfolio/Rabanel Auto Ecole/XNews-Novembre Auto Ecole1 copie 7.jpg', description: 'XNews Novembre.' }
-            ]
-        };
-                gap: 20px;
-                animation: scrollClients 15s linear infinite;
-            }
-            .clients-track img { height: 28px; }
+        /* Clients carousel track */
+        .clients-track {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: scrollClients 15s linear infinite;
+            will-change: transform;
+        }
+
+        .clients-track img { height: 28px; display:block; }
+
+        @keyframes scrollClients {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         @media (max-width: 992px) {
