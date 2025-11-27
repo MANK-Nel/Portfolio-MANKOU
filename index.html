@@ -807,6 +807,83 @@
             }
         }
         
+        /* --- Clients rows horizontal carousel (only for in-folder view) --- */
+        .clients-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .clients-row {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding: 12px 6px;
+            scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .clients-row::-webkit-scrollbar { height: 10px; }
+        .clients-row::-webkit-scrollbar-thumb { background: rgba(255,138,0,0.18); border-radius: 10px; }
+
+        .clients-row .client-file-item {
+            flex: 0 0 160px;
+            max-width: 160px;
+            scroll-snap-align: start;
+            margin: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+        }
+
+        .clients-row .client-file-item[data-type="image"] .file-thumbnail {
+            height: 110px;
+            object-fit: cover;
+        }
+
+        .clients-row .client-file-item .file-info { padding: 10px; }
+        .clients-row .client-file-item .file-name { font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .clients-row .client-file-item { flex: 0 0 140px; max-width:140px; }
+            .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 95px; }
+        }
+        @media (max-width: 480px) {
+            .clients-row .client-file-item { flex: 0 0 120px; max-width:120px; }
+            .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 80px; }
+        }
+
+        /* Navigation buttons for horizontal rows (mobile) */
+        .clients-row-wrap { position: relative; }
+        .clients-row-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.45);
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+        }
+        .clients-row-btn.left { left: 8px; }
+        .clients-row-btn.right { right: 8px; }
+
+        /* hide buttons on larger screens (desktop) */
+        @media (min-width: 769px) {
+            .clients-row-btn { display: none; }
+        }
+
+        /* --- end clients rows --- */
+
         .portfolio-item {
             background: var(--card-bg);
             border-radius: 15px;
@@ -3136,7 +3213,7 @@
             grid.innerHTML = '';
 
             if (currentClientPath.length === 0) {
-                // Afficher les clients
+                // Afficher les clients (racine)
                 grid.classList.remove('in-folder');
                 breadcrumb.textContent = 'Clients';
                 breadcrumbBack.style.display = 'none';
@@ -3156,41 +3233,76 @@
                     grid.appendChild(item);
                 });
             } else {
-                // Afficher les fichiers du client
+                // Afficher les fichiers du client en DEUX rangées horizontales
                 grid.classList.add('in-folder');
                 const clientName = currentClientPath[0];
-                const files = clientsData[clientName];
+                const files = clientsData[clientName] || [];
                 breadcrumb.textContent = '→ ' + clientName;
                 breadcrumbBack.style.display = 'flex';
 
-                files.forEach(file => {
+                // container rows
+                const rowsWrapper = document.createElement('div');
+                rowsWrapper.className = 'clients-rows';
+
+                const rowTop = document.createElement('div');
+                rowTop.className = 'clients-row';
+                const rowBottom = document.createElement('div');
+                rowBottom.className = 'clients-row';
+
+                files.forEach((file, idx) => {
                     const item = document.createElement('div');
                     item.className = 'client-file-item';
                     item.setAttribute('data-type', file.type);
                     item.onclick = () => openClientFile(file);
 
                     if (file.type === 'image') {
-                        // Afficher vignette image
                         item.innerHTML = `
-                            <img src="${file.url}" alt="${file.name}" class="file-thumbnail" />
+                            <img src="${file.url}" alt="${file.name}" class="file-thumbnail" loading="lazy" />
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                            </div>
+                        `;
+                    } else if (file.type === 'video') {
+                        item.innerHTML = `
+                            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:12px;">
+                                <i class="fas fa-video" style="font-size:28px;color:var(--primary-color)"></i>
+                            </div>
                             <div class="file-info">
                                 <div class="file-name">${file.name}</div>
                             </div>
                         `;
                     } else {
-                        // Afficher icône pour vidéo
-                        let icon = 'file';
-                        if (file.type === 'video') icon = 'video';
-
                         item.innerHTML = `
-                            <div class="file-icon">
-                                <i class="fas fa-${icon}"></i>
-                            </div>
-                            <div class="file-name">${file.name}</div>
+                            <div class="file-icon"><i class="fas fa-file"></i></div>
+                            <div class="file-info"><div class="file-name">${file.name}</div></div>
                         `;
                     }
-                    grid.appendChild(item);
+
+                    // répartir alternativement entre top et bottom
+                    if (idx % 2 === 0) rowTop.appendChild(item);
+                    else rowBottom.appendChild(item);
                 });
+
+                // si une rangée est vide, on la masque
+                if (rowTop.children.length) rowsWrapper.appendChild(rowTop);
+                if (rowBottom.children.length) rowsWrapper.appendChild(rowBottom);
+
+                grid.appendChild(rowsWrapper);
+                // enhance rows (add mobile nav buttons, keyboard support)
+                enhanceClientRows();
+
+                // Optionnel : auto-scroll léger (désactivé par défaut)
+                // pour l'activer, décommenter la section ci‑dessous
+                /*
+                [rowTop, rowBottom].forEach((r, i) => {
+                    let px = 0;
+                    setInterval(() => {
+                        if (!r || r.scrollWidth <= r.clientWidth) return;
+                        px = (px + 1) % (r.scrollWidth);
+                        r.scrollTo({ left: px, behavior: 'smooth' });
+                    }, 30 + i*20);
+                });
+                */
             }
         }
 
@@ -3234,6 +3346,94 @@
                 </div>
             `;
             document.body.appendChild(modal);
+        }
+
+        // Enhance horizontal rows: add prev/next buttons on mobile, keyboard support and focusability
+        function enhanceClientRows() {
+            const rows = document.querySelectorAll('.clients-row');
+            rows.forEach(row => {
+                if (row.dataset.enhanced) return;
+
+                // wrap row to position buttons
+                const wrap = document.createElement('div');
+                wrap.className = 'clients-row-wrap';
+                row.parentNode.replaceChild(wrap, row);
+                wrap.appendChild(row);
+
+                // create buttons
+                const btnL = document.createElement('button');
+                btnL.className = 'clients-row-btn left';
+                btnL.setAttribute('aria-label', 'Faire défiler à gauche');
+                btnL.innerHTML = '&#x2039;';
+                btnL.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    row.scrollBy({ left: -Math.round(row.clientWidth * 0.6), behavior: 'smooth' });
+                });
+
+                const btnR = document.createElement('button');
+                btnR.className = 'clients-row-btn right';
+                btnR.setAttribute('aria-label', 'Faire défiler à droite');
+                btnR.innerHTML = '&#x203A;';
+                btnR.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    row.scrollBy({ left: Math.round(row.clientWidth * 0.6), behavior: 'smooth' });
+                });
+
+                wrap.appendChild(btnL);
+                wrap.appendChild(btnR);
+
+                // keyboard support and focus
+                row.tabIndex = 0;
+                row.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight') row.scrollBy({ left: 200, behavior: 'smooth' });
+                    if (e.key === 'ArrowLeft') row.scrollBy({ left: -200, behavior: 'smooth' });
+                });
+
+                // mark enhanced
+                // attach drag-to-scroll for better iOS touch support
+                try { attachDragScrollToRow(row); } catch (err) { /* ignore */ }
+                row.dataset.enhanced = '1';
+            });
+        }
+
+        // Add touch / pointer drag support for horizontal rows as a fallback
+        // This helps on iOS when other scripts may interfere with native scrolling
+        function attachDragScrollToRow(row) {
+            let isDown = false;
+            let startX = 0;
+            let scrollLeft = 0;
+
+            row.addEventListener('touchstart', function(e) {
+                if (!e.touches || e.touches.length === 0) return;
+                isDown = true;
+                startX = e.touches[0].pageX - row.getBoundingClientRect().left;
+                scrollLeft = row.scrollLeft;
+            }, { passive: true });
+
+            row.addEventListener('touchmove', function(e) {
+                if (!isDown) return;
+                // allow this handler to control scrolling even if other handlers exist
+                const x = e.touches[0].pageX - row.getBoundingClientRect().left;
+                const walk = (startX - x);
+                row.scrollLeft = scrollLeft + walk;
+            }, { passive: false });
+
+            row.addEventListener('touchend', function() { isDown = false; }, { passive: true });
+
+            // pointer events fallback
+            row.addEventListener('pointerdown', function(e) {
+                isDown = true;
+                startX = e.clientX - row.getBoundingClientRect().left;
+                scrollLeft = row.scrollLeft;
+                row.setPointerCapture && row.setPointerCapture(e.pointerId);
+            });
+            row.addEventListener('pointermove', function(e) {
+                if (!isDown) return;
+                const x = e.clientX - row.getBoundingClientRect().left;
+                const walk = (startX - x);
+                row.scrollLeft = scrollLeft + walk;
+            });
+            row.addEventListener('pointerup', function(e) { isDown = false; try{ row.releasePointerCapture && row.releasePointerCapture(e.pointerId); }catch(e){} });
         }
 
         // Initialiser l'explorateur au chargement
