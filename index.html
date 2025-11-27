@@ -819,8 +819,10 @@
             gap: 14px;
             overflow-x: auto;
             padding: 12px 6px;
+            padding-right: 56px; /* leave room for right nav button */
             scroll-snap-type: x proximity;
             -webkit-overflow-scrolling: touch;
+            touch-action: pan-x; /* improve horizontal touch scrolling */
         }
 
         .clients-row::-webkit-scrollbar { height: 10px; }
@@ -856,7 +858,7 @@
         }
 
         /* Navigation buttons for horizontal rows (mobile) */
-        .clients-row-wrap { position: relative; }
+        .clients-row-wrap { position: relative; overflow: visible; }
         .clients-row-btn {
             position: absolute;
             top: 50%;
@@ -867,21 +869,20 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            display: flex;
+            display: flex !important;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 9999;
+            z-index: 2147483000; /* very high to stay above overlays */
             box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+            pointer-events: auto;
         }
         .clients-row-btn { touch-action: manipulation; -webkit-tap-highlight-color: rgba(0,0,0,0.12); }
         .clients-row-btn.left { left: 8px; }
         .clients-row-btn.right { right: 8px; }
 
-        /* hide buttons on larger screens (desktop) */
-        @media (min-width: 769px) {
-            .clients-row-btn { display: none; }
-        }
+        /* keep buttons visible on all screen sizes; force if some rules hide them */
+        .clients-row-btn { display: flex !important; }
 
         /* --- end clients rows --- */
 
@@ -3203,6 +3204,8 @@
             grid.innerHTML = '';
 
             if (currentClientPath.length === 0) {
+                // stop any auto-loop when leaving a folder
+                try { stopClientsAutoLoop(); } catch (e) { /* ignore */ }
                 // Afficher les clients (racine)
                 grid.classList.remove('in-folder');
                 breadcrumb.textContent = 'Clients';
@@ -3283,6 +3286,10 @@
                 // enhance rows (add mobile nav buttons, keyboard support)
                 enhanceClientRows();
 
+                // start safe auto-loop for rows (non-aggressive). It duplicates content if needed
+                // and performs a RAF-driven smooth scroll with pause on interaction.
+                startClientsAutoLoop();
+
                 // Optionnel : auto-scroll léger (désactivé par défaut)
                 // pour l'activer, décommenter la section ci‑dessous
                 /*
@@ -3340,6 +3347,70 @@
                 </div>
             `;
             document.body.appendChild(modal);
+        }
+
+        // --- Auto-loop implementation for clients rows ---
+        const _clientsAuto = { rafs: new WeakMap(), running: false };
+
+        function startClientsAutoLoop(speed = 0.35) {
+            // speed: pixels per frame (approx). Lower = slower.
+            stopClientsAutoLoop();
+            const rows = document.querySelectorAll('.clients-row');
+            rows.forEach(row => {
+                if (!row || row.scrollWidth <= row.clientWidth) return; // nothing to scroll
+
+                // duplicate content to allow seamless wrap if not already duplicated
+                if (!row.dataset.duplicated) {
+                    row.innerHTML = row.innerHTML + row.innerHTML;
+                    row.dataset.duplicated = '1';
+                }
+
+                let running = true;
+                const state = { offset: row.scrollLeft };
+
+                const loop = () => {
+                    if (!running) return;
+                    // small incremental move
+                    state.offset += speed;
+                    if (state.offset >= row.scrollWidth / 2) {
+                        // jump back seamlessly
+                        state.offset = state.offset - row.scrollWidth / 2;
+                    }
+                    row.scrollLeft = Math.floor(state.offset);
+                    const id = requestAnimationFrame(loop);
+                    _clientsAuto.rafs.set(row, id);
+                };
+
+                // pause on pointer/mouse/touch
+                const pause = () => { running = false; const id = _clientsAuto.rafs.get(row); if (id) cancelAnimationFrame(id); };
+                const resume = () => { if (!running) { running = true; loop(); } };
+
+                row.addEventListener('pointerdown', pause, { passive: true });
+                row.addEventListener('touchstart', pause, { passive: true });
+                row.addEventListener('mouseenter', pause, { passive: true });
+                row.addEventListener('pointerup', resume, { passive: true });
+                row.addEventListener('touchend', resume, { passive: true });
+                row.addEventListener('mouseleave', resume, { passive: true });
+
+                // start loop
+                loop();
+                _clientsAuto.running = true;
+            });
+        }
+
+        function stopClientsAutoLoop() {
+            const rows = document.querySelectorAll('.clients-row');
+            rows.forEach(row => {
+                const id = _clientsAuto.rafs.get(row);
+                if (id) cancelAnimationFrame(id);
+                _clientsAuto.rafs.delete(row);
+                // remove duplicated content marker but keep HTML as-is (safe)
+                if (row && row.dataset && row.dataset.duplicated) {
+                    // do NOT re-collapse HTML to avoid DOM reflow issues; just mark stopped
+                    row.dataset.duplicated = 'stopped';
+                }
+            });
+            _clientsAuto.running = false;
         }
 
         // Enhance horizontal rows: add prev/next buttons on mobile, keyboard support and focusability
