@@ -884,6 +884,30 @@
         /* keep buttons visible on all screen sizes; force if some rules hide them */
         .clients-row-btn { display: flex !important; }
 
+        /* Temporary debug fix for very small devices (Spark20) :
+           force buttons to be fixed on viewport so they are never covered
+           by container overlays. This is a safe, temporary change for testing. */
+        @media (max-width: 480px) {
+            .clients-row-btn {
+                position: fixed !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 44px !important;
+                height: 44px !important;
+                background: var(--primary-color, #ff8a00) !important;
+                color: #fff !important;
+                right: 12px !important;
+                left: auto !important;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+                z-index: 2147483640 !important;
+            }
+            .clients-row-btn.left { left: 12px !important; right: auto !important; }
+            .clients-row-btn.right { right: 12px !important; left: auto !important; }
+
+            /* ensure the rows have space so items aren't hidden under the fixed buttons */
+            .clients-row { padding-right: 88px !important; padding-left: 88px !important; }
+        }
+
         /* --- end clients rows --- */
 
         .portfolio-item {
