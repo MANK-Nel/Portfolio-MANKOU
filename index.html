@@ -818,15 +818,16 @@
             display: flex;
             gap: 14px;
             overflow-x: auto;
+            overflow-y: hidden;
             padding: 12px 6px;
-            padding-right: 56px; /* leave room for right nav button */
             scroll-snap-type: x proximity;
             -webkit-overflow-scrolling: touch;
-            touch-action: pan-x; /* improve horizontal touch scrolling */
+            touch-action: pan-x;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
         }
 
-        .clients-row::-webkit-scrollbar { height: 10px; }
-        .clients-row::-webkit-scrollbar-thumb { background: rgba(255,138,0,0.18); border-radius: 10px; }
+        .clients-row::-webkit-scrollbar { display: none; }
 
         .clients-row .client-file-item {
             flex: 0 0 160px;
@@ -848,64 +849,46 @@
         .clients-row .client-file-item .file-info { padding: 10px; }
         .clients-row .client-file-item .file-name { font-size: 13px; }
 
-        @media (max-width: 768px) {
-            .clients-row .client-file-item { flex: 0 0 140px; max-width:140px; }
-            .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 95px; }
-        }
-        @media (max-width: 480px) {
-            .clients-row .client-file-item { flex: 0 0 120px; max-width:120px; }
-            .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 80px; }
-        }
-
-        /* Navigation buttons for horizontal rows (mobile) */
+        /* Navigation buttons (desktop only) */
         .clients-row-wrap { position: relative; overflow: visible; }
         .clients-row-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.45);
+            background: rgba(0,0,0,0.7);
             color: #fff;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            display: flex !important;
+            display: none; /* hidden by default */
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 2147483000; /* very high to stay above overlays */
-            box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-            pointer-events: auto;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        .clients-row-btn { touch-action: manipulation; -webkit-tap-highlight-color: rgba(0,0,0,0.12); }
-        .clients-row-btn.left { left: 8px; }
-        .clients-row-btn.right { right: 8px; }
 
-        /* keep buttons visible on all screen sizes; force if some rules hide them */
-        .clients-row-btn { display: flex !important; }
+        .clients-row-btn.left { left: 10px; }
+        .clients-row-btn.right { right: 10px; }
 
-        /* Temporary debug fix for very small devices (Spark20) :
-           force buttons to be fixed on viewport so they are never covered
-           by container overlays. This is a safe, temporary change for testing. */
+        /* Show buttons only on desktop */
+        @media (min-width: 769px) {
+            .clients-row-btn { display: flex !important; }
+            .clients-row { padding-right: 60px; padding-left: 60px; }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .clients-row .client-file-item { flex: 0 0 140px; max-width: 140px; }
+            .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 95px; }
+            .clients-rows { gap: 12px; }
+            .clients-row { gap: 10px; padding: 10px 6px; }
+        }
+
         @media (max-width: 480px) {
-            .clients-row-btn {
-                position: fixed !important;
-                top: 50% !important;
-                transform: translateY(-50%) !important;
-                width: 44px !important;
-                height: 44px !important;
-                background: var(--primary-color, #ff8a00) !important;
-                color: #fff !important;
-                right: 12px !important;
-                left: auto !important;
-                box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
-                z-index: 2147483640 !important;
-            }
-            .clients-row-btn.left { left: 12px !important; right: auto !important; }
-            .clients-row-btn.right { right: 12px !important; left: auto !important; }
-
-            /* ensure the rows have space so items aren't hidden under the fixed buttons */
-            .clients-row { padding-right: 88px !important; padding-left: 88px !important; }
+            .clients-row .client-file-item { flex: 0 0 120px; max-width: 120px; }
+            .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 80px; }
         }
 
         /* --- end clients rows --- */
@@ -2012,6 +1995,21 @@
                             <p class="portfolio-desc">Créations visuelles 3D pour campagnes de communication digitale et supports marketing multimédia.</p>
                         </div>
                     </div>
+                    
+                    <!-- New project: Escalade 3D -->
+                    <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-42')">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio/Escalade 3D-3.jpg" alt="Escalade 3D" loading="lazy">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <div class="portfolio-category">IMAGE</div>
+                            <h3 class="portfolio-title">Escalade 3D</h3>
+                            <p class="portfolio-desc">Visuel 3D pour projet d'escalade - rendu et post-production.</p>
+                        </div>
+                    </div>
 
                     <!-- Nouveaux éléments ajoutés depuis le dossier images/portfolio -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-05')">
@@ -3047,6 +3045,15 @@
         </div>
     </div>
 
+    <div id="modal-42" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-42')">&times;</span>
+            <h2>Escalade 3D</h2>
+            <p>Visuel 3D réalisé pour un projet d'escalade — rendu et post-production.</p>
+            <img src="images/portfolio/Escalade 3D-3.jpg" alt="Escalade 3D" style="max-width:100%; margin-top:16px; border-radius:8px;" loading="lazy">
+        </div>
+    </div>
+
     <script>
         // Navigation smooth scroll
         document.querySelectorAll('.smoothscroll').forEach(anchor => {
@@ -3377,38 +3384,62 @@
         const _clientsAuto = { rafs: new WeakMap(), running: false };
 
         function startClientsAutoLoop(speed = 0.35) {
-            // speed: pixels per frame (approx). Lower = slower.
+            // Activer le défilement automatique UNIQUEMENT sur mobile (écrans <= 768px)
+            const isMobile = window.innerWidth <= 768;
+            const isVerySmallScreen = window.innerWidth <= 480;
+            const adjustedSpeed = isVerySmallScreen ? speed * 0.7 : speed;
+
+            if (!isMobile) {
+                return;
+            }
+
             stopClientsAutoLoop();
             const rows = document.querySelectorAll('.clients-row');
             rows.forEach(row => {
-                if (!row || row.scrollWidth <= row.clientWidth) return; // nothing to scroll
+                if (!row || row.scrollWidth <= row.clientWidth) return;
 
-                // duplicate content to allow seamless wrap if not already duplicated
+                // Dupliquer le contenu pour un défilement infini
                 if (!row.dataset.duplicated) {
-                    row.innerHTML = row.innerHTML + row.innerHTML;
+                    const items = Array.from(row.children);
+                    if (items.length === 0) return;
+                    items.forEach(item => {
+                        const clone = item.cloneNode(true);
+                        if (item.onclick) clone.onclick = item.onclick;
+                        row.appendChild(clone);
+                    });
                     row.dataset.duplicated = '1';
                 }
 
-                let running = true;
+                let isPaused = false;
+                let pauseTimeout = null;
                 const state = { offset: row.scrollLeft };
 
                 const loop = () => {
-                    if (!running) return;
-                    // small incremental move
-                    state.offset += speed;
-                    if (state.offset >= row.scrollWidth / 2) {
-                        // jump back seamlessly
-                        state.offset = state.offset - row.scrollWidth / 2;
+                    // continuer la boucle même en pause; n'incrémenter l'offset que si non en pause
+                    if (!isPaused) {
+                        state.offset += adjustedSpeed;
+                        if (state.offset >= row.scrollWidth / 2) {
+                            state.offset = state.offset - row.scrollWidth / 2;
+                        }
+                        row.scrollLeft = Math.floor(state.offset);
                     }
-                    row.scrollLeft = Math.floor(state.offset);
                     const id = requestAnimationFrame(loop);
                     _clientsAuto.rafs.set(row, id);
                 };
 
-                // pause on pointer/mouse/touch
-                const pause = () => { running = false; const id = _clientsAuto.rafs.get(row); if (id) cancelAnimationFrame(id); };
-                const resume = () => { if (!running) { running = true; loop(); } };
+                const pause = () => {
+                    isPaused = true;
+                    if (pauseTimeout) clearTimeout(pauseTimeout);
+                };
 
+                const resume = () => {
+                    if (pauseTimeout) clearTimeout(pauseTimeout);
+                    pauseTimeout = setTimeout(() => {
+                        isPaused = false;
+                    }, 2000);
+                };
+
+                // Événements tactiles
                 row.addEventListener('pointerdown', pause, { passive: true });
                 row.addEventListener('touchstart', pause, { passive: true });
                 row.addEventListener('mouseenter', pause, { passive: true });
@@ -3416,7 +3447,7 @@
                 row.addEventListener('touchend', resume, { passive: true });
                 row.addEventListener('mouseleave', resume, { passive: true });
 
-                // start loop
+                // Démarrer la boucle
                 loop();
                 _clientsAuto.running = true;
             });
@@ -3437,58 +3468,51 @@
             _clientsAuto.running = false;
         }
 
-        // Enhance horizontal rows: add prev/next buttons on mobile, keyboard support and focusability
+        // Enhance horizontal rows: create desktop nav buttons, enable drag on mobile
         function enhanceClientRows() {
+            const isMobile = window.innerWidth <= 768;
             const rows = document.querySelectorAll('.clients-row');
             rows.forEach(row => {
                 if (row.dataset.enhanced) return;
 
-                // wrap row to position buttons
-                const wrap = document.createElement('div');
-                wrap.className = 'clients-row-wrap';
-                row.parentNode.replaceChild(wrap, row);
-                wrap.appendChild(row);
+                // On desktop, create wrap + prev/next buttons
+                if (!isMobile) {
+                    // avoid double-wrapping
+                    if (!row.parentNode.classList || row.parentNode.classList.contains('clients-row-wrap') === false) {
+                        const wrap = document.createElement('div');
+                        wrap.className = 'clients-row-wrap';
+                        row.parentNode.replaceChild(wrap, row);
+                        wrap.appendChild(row);
 
-                // create buttons
-                const btnL = document.createElement('button');
-                btnL.className = 'clients-row-btn left';
-                btnL.setAttribute('aria-label', 'Faire défiler à gauche');
-                btnL.innerHTML = '&#x2039;';
-                btnL.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    animateScroll(row, -Math.round(row.clientWidth * 0.6));
-                });
-                btnL.addEventListener('touchend', (e) => { e.stopPropagation(); animateScroll(row, -Math.round(row.clientWidth * 0.6)); }, { passive: true });
-                // pointer fallback for Safari/iOS & direct touch handling
-                btnL.addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); animateScroll(row, -Math.round(row.clientWidth * 0.6)); });
-                btnL.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); animateScroll(row, -Math.round(row.clientWidth * 0.6)); }, { passive: false });
+                        const btnL = document.createElement('button');
+                        btnL.className = 'clients-row-btn left';
+                        btnL.setAttribute('aria-label', 'Précédent');
+                        btnL.innerHTML = '‹';
+                        btnL.onclick = (e) => { e.stopPropagation(); animateScroll(row, -Math.round(row.clientWidth * 0.6)); };
 
-                const btnR = document.createElement('button');
-                btnR.className = 'clients-row-btn right';
-                btnR.setAttribute('aria-label', 'Faire défiler à droite');
-                btnR.innerHTML = '&#x203A;';
-                btnR.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    animateScroll(row, Math.round(row.clientWidth * 0.6));
-                });
-                btnR.addEventListener('touchend', (e) => { e.stopPropagation(); animateScroll(row, Math.round(row.clientWidth * 0.6)); }, { passive: true });
-                // pointer fallback for Safari/iOS & direct touch handling
-                btnR.addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); animateScroll(row, Math.round(row.clientWidth * 0.6)); });
-                btnR.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); animateScroll(row, Math.round(row.clientWidth * 0.6)); }, { passive: false });
+                        const btnR = document.createElement('button');
+                        btnR.className = 'clients-row-btn right';
+                        btnR.setAttribute('aria-label', 'Suivant');
+                        btnR.innerHTML = '›';
+                        btnR.onclick = (e) => { e.stopPropagation(); animateScroll(row, Math.round(row.clientWidth * 0.6)); };
 
-                wrap.appendChild(btnL);
-                wrap.appendChild(btnR);
+                        wrap.appendChild(btnL);
+                        wrap.appendChild(btnR);
+                    }
+                }
 
-                // keyboard support and focus
+                // On mobile, enable drag-to-scroll and keep layout simple
+                if (isMobile) {
+                    try { attachDragScrollToRow(row); } catch (err) { /* ignore */ }
+                }
+
+                // keyboard support for accessibility
                 row.tabIndex = 0;
                 row.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowRight') row.scrollBy({ left: 200, behavior: 'smooth' });
-                    if (e.key === 'ArrowLeft') row.scrollBy({ left: -200, behavior: 'smooth' });
+                    if (e.key === 'ArrowRight') animateScroll(row, Math.round(row.clientWidth * 0.6));
+                    if (e.key === 'ArrowLeft') animateScroll(row, -Math.round(row.clientWidth * 0.6));
                 });
 
-                // mark enhanced
-                // attach drag-to-scroll for better iOS touch support
-                try { attachDragScrollToRow(row); } catch (err) { /* ignore */ }
                 row.dataset.enhanced = '1';
             });
         }
@@ -3557,7 +3581,7 @@
             if (document.getElementById('clients-grid')) {
                 renderClientsExplorer();
             }
-        }
+        }  
         // ========== FIN CLIENTS EXPLORER ==========
 
         // WhatsApp function
