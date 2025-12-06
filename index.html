@@ -830,8 +830,8 @@
         .clients-row::-webkit-scrollbar { display: none; }
 
         .clients-row .client-file-item {
-            flex: 0 0 160px;
-            max-width: 160px;
+            flex: 0 0 140px;
+            max-width: 140px;
             scroll-snap-align: start;
             margin: 0;
             border-radius: 12px;
@@ -887,8 +887,32 @@
         }
 
         @media (max-width: 480px) {
-            .clients-row .client-file-item { flex: 0 0 120px; max-width: 120px; }
+            .clients-row .client-file-item { 
+                flex: 0 0 110px; 
+                max-width: 110px; 
+                min-width: 110px; /* IMPORTANT pour forcer la taille */
+            }
             .clients-row .client-file-item[data-type="image"] .file-thumbnail { height: 80px; }
+
+            .clients-row {
+                gap: 8px; /* Réduire l'espace entre les items */
+            }
+        }
+
+        @media (max-width: 380px) {
+            .clients-row .client-file-item { 
+                flex: 0 0 95px; 
+                max-width: 95px; 
+                min-width: 95px;
+            }
+            
+            .clients-row .client-file-item[data-type="image"] .file-thumbnail {
+                height: 70px;
+            }
+            
+            .clients-row {
+                gap: 6px;
+            }
         }
 
         /* --- end clients rows --- */
@@ -2493,9 +2517,9 @@
                             <div class="portfolio-category">3D</div>
                             <h3 class="portfolio-title">3D Chronos-Services</h3>
                             <p class="portfolio-desc">Création 3D pour Chronos-Services avec design moderne et impact visuel.</p>
-                        </div>
+                        </div> 
                     </div>
-
+  
                     <!-- Ajout: Affiche Père Noël -->
                     <div class="portfolio-item hover-lift" data-category="image" onclick="openModal('modal-45')">
                         <div class="portfolio-image">
@@ -3387,7 +3411,10 @@
 
                 // start safe auto-loop for rows (non-aggressive). It duplicates content if needed
                 // and performs a RAF-driven smooth scroll with pause on interaction.
-                startClientsAutoLoop();
+                // Délai pour s'assurer que le DOM est prêt
+                setTimeout(() => {
+                    startClientsAutoLoop();
+                }, 200);
 
                 // Optionnel : auto-scroll léger (désactivé par défaut)
                 // pour l'activer, décommenter la section ci‑dessous
@@ -3451,73 +3478,82 @@
         // --- Auto-loop implementation for clients rows ---
         const _clientsAuto = { rafs: new WeakMap(), running: false };
 
-        function startClientsAutoLoop(speed = 0.35) {
-            // Activer le défilement automatique UNIQUEMENT sur mobile (écrans <= 768px)
-            const isMobile = window.innerWidth <= 768;
-            const isVerySmallScreen = window.innerWidth <= 480;
-            const adjustedSpeed = isVerySmallScreen ? speed * 0.7 : speed;
-
-            if (!isMobile) {
-                return;
-            }
-
+        function startClientsAutoLoop(speed = 0.5) {
             stopClientsAutoLoop();
             const rows = document.querySelectorAll('.clients-row');
-            rows.forEach(row => {
-                if (!row || row.scrollWidth <= row.clientWidth) return;
 
-                // Dupliquer le contenu pour un défilement infini
+            rows.forEach(row => {
+                if (!row) return;
+
+                // Dupliquer le contenu PLUSIEURS FOIS pour garantir le scroll
                 if (!row.dataset.duplicated) {
                     const items = Array.from(row.children);
                     if (items.length === 0) return;
-                    items.forEach(item => {
-                        const clone = item.cloneNode(true);
-                        if (item.onclick) clone.onclick = item.onclick;
-                        row.appendChild(clone);
-                    });
+
+                    // Dupliquer 3 fois au lieu de 1 fois
+                    for (let i = 0; i < 3; i++) {
+                        items.forEach(item => {
+                            const clone = item.cloneNode(true);
+                            if (item.onclick) clone.onclick = item.onclick;
+                            row.appendChild(clone);
+                        });
+                    }
                     row.dataset.duplicated = '1';
                 }
 
-                let isPaused = false;
-                let pauseTimeout = null;
-                const state = { offset: row.scrollLeft };
-
-                const loop = () => {
-                    // continuer la boucle même en pause; n'incrémenter l'offset que si non en pause
-                    if (!isPaused) {
-                        state.offset += adjustedSpeed;
-                        if (state.offset >= row.scrollWidth / 2) {
-                            state.offset = state.offset - row.scrollWidth / 2;
-                        }
-                        row.scrollLeft = Math.floor(state.offset);
+                // Attendre que le DOM soit mis à jour
+                setTimeout(() => {
+                    // Vérifier si le scroll est nécessaire
+                    if (row.scrollWidth <= row.clientWidth + 10) {
+                        console.log('Contenu trop petit, pas de scroll');
+                        return;
                     }
-                    const id = requestAnimationFrame(loop);
-                    _clientsAuto.rafs.set(row, id);
-                };
 
-                const pause = () => {
-                    isPaused = true;
-                    if (pauseTimeout) clearTimeout(pauseTimeout);
-                };
+                    let isPaused = false;
+                    let pauseTimeout = null;
+                    const state = { offset: 0 };
 
-                const resume = () => {
-                    if (pauseTimeout) clearTimeout(pauseTimeout);
-                    pauseTimeout = setTimeout(() => {
-                        isPaused = false;
-                    }, 2000);
-                };
+                    // Vitesse adaptée au petit écran
+                    const adjustedSpeed = window.innerWidth <= 480 ? 0.3 : speed;
 
-                // Événements tactiles
-                row.addEventListener('pointerdown', pause, { passive: true });
-                row.addEventListener('touchstart', pause, { passive: true });
-                row.addEventListener('mouseenter', pause, { passive: true });
-                row.addEventListener('pointerup', resume, { passive: true });
-                row.addEventListener('touchend', resume, { passive: true });
-                row.addEventListener('mouseleave', resume, { passive: true });
+                    const loop = () => {
+                        if (!isPaused) {
+                            state.offset += adjustedSpeed;
 
-                // Démarrer la boucle
-                loop();
-                _clientsAuto.running = true;
+                            // Réinitialiser à 1/4 du scrollWidth (car on a dupliqué 3 fois)
+                            const resetPoint = row.scrollWidth / 4;
+                            if (state.offset >= resetPoint) {
+                                state.offset = 0;
+                            }
+
+                            row.scrollLeft = Math.floor(state.offset);
+                        }
+                        const id = requestAnimationFrame(loop);
+                        _clientsAuto.rafs.set(row, id);
+                    };
+
+                    const pause = () => {
+                        isPaused = true;
+                        if (pauseTimeout) clearTimeout(pauseTimeout);
+                    };
+
+                    const resume = () => {
+                        if (pauseTimeout) clearTimeout(pauseTimeout);
+                        pauseTimeout = setTimeout(() => {
+                            isPaused = false;
+                        }, 2000);
+                    };
+
+                    // Événements
+                    row.addEventListener('pointerdown', pause, { passive: true });
+                    row.addEventListener('touchstart', pause, { passive: true });
+                    row.addEventListener('pointerup', resume, { passive: true });
+                    row.addEventListener('touchend', resume, { passive: true });
+
+                    // Démarrer
+                    loop();
+                    _clientsAuto.running = true;
+                }, 100);
             });
         }
 
